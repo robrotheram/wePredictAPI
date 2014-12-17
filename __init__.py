@@ -27,10 +27,7 @@ def Authenticate():
 
 @app.route("/COPD")
 def COPD():
-    cursor = mysql.connect().cursor()
-    cursor.execute("SELECT * from COPD LIMIT 100")
-    data=cursor.fetchall()
-    return jsonify({'data': data}), 201
+    return jsonify({'data': 'hi'}), 201
 
 
 
