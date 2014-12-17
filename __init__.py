@@ -31,6 +31,7 @@ def COPD():
     cursor.execute("SELECT * from COPD");
     return jsonify({'data': 'hi'}), 201
 
+
 @app.route("/")
 def hello():
     return "Hello, apache!!!!!"
