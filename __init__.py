@@ -29,6 +29,7 @@ def Authenticate():
 def COPD():
     cursor = mysql.connect().cursor()
     cursor.execute("SELECT * from COPD");
+    data = cursor.fetchall
     return jsonify({'data': 'hi'}), 201
 
 
