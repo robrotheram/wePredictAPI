@@ -30,7 +30,7 @@ def COPD():
     cursor = mysql.connect().cursor()
     cursor.execute("SELECT * from COPD");
     data = cursor.fetchall
-    return jsonify({'data': 'hi'}), 201
+    return jsonify(data), 201
 
 
 @app.route("/")
