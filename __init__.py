@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 from flaskext.mysql import MySQL
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'mallard'
-app.config['MYSQL_DATABASE_DB'] = 'isee'
+app.config['MYSQL_DATABASE_DB'] = 'wePredict'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
@@ -23,6 +23,16 @@ def Authenticate():
         return "Username or Password is wrong"
     else:
         return "Logged in successfully"
+
+
+@app.route("/COPD")
+def COPD():
+    cursor = mysql.connect().cursor()
+    cursor.execute("SELECT * from COPD LIMIT 100")
+    data=cursor.fetchall()
+    return jsonify({'data': data}), 201
+
+
 
 @app.route("/")
 def hello():
