@@ -29,8 +29,6 @@ def Authenticate():
 def COPD():
     return jsonify({'data': 'hi'}), 201
 
-
-
 @app.route("/")
 def hello():
     return "Hello, apache!!!!!"
