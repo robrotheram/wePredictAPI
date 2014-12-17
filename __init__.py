@@ -27,6 +27,8 @@ def Authenticate():
 
 @app.route("/COPD")
 def COPD():
+    cursor = mysql.connect().cursor()
+    cursor.execute("SELECT * from COPD");
     return jsonify({'data': 'hi'}), 201
 
 @app.route("/")
