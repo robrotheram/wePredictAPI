@@ -8,8 +8,8 @@ db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard",
 @app.route('/testdb')
 def testdb():
     cursor = db.cursor()
-    data = cursor.execute("SELECT * from ADRESS LIMIT 5");
-    return data
+    cursor.execute("SELECT * from ADRESS LIMIT 5");
+    return jsonify(data = cursor.fetchall())
 
 @app.route("/")
 def hello():
