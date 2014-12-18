@@ -11,6 +11,19 @@ def testdb():
     cursor.execute("SELECT * from ADRESS");
     return jsonify(data = cursor.fetchall())
 
+
+@app.route('/getAdress')
+def getAdress():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from ADRESS");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from ADRESS LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
 @app.route("/")
 def hello():
     return "Hello, apache!!!!!"
