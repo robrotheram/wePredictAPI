@@ -5,13 +5,6 @@ import MySQLdb
 app = Flask(__name__)
 db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
 
-@app.route('/testdb')
-def testdb():
-    cursor = db.cursor()
-    cursor.execute("SELECT * from ADRESS");
-    return jsonify(data = cursor.fetchall())
-
-
 @app.route('/getadress')
 def getAdress():
     limit = request.args.get('limit')
@@ -25,12 +18,17 @@ def getAdress():
         return jsonify(data = cursor.fetchall())
 
 
-
-
 @app.route('/getsmoking')
 def getSmoking():
     limit = request.args.get('limit')
-    return "SMOKING"
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from SMOKING");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from SMOKING LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
 
 
 @app.route('/getpolution')
