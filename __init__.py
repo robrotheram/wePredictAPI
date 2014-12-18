@@ -71,7 +71,7 @@ def getFLU():
 
 
 @app.route('/getCOPD')
-def getAdress():
+def getCOPD():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
