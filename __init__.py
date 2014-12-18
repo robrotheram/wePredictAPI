@@ -17,10 +17,10 @@ def getAdress():
         cursor.execute("SELECT * from ADRESS LIMIT "+limit);
         return jsonify(data = cursor.fetchall())
 
-
 @app.route('/getsmoking')
 def getSmoking():
     limit = request.args.get('limit')
+    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
     if limit is None:
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING");
@@ -29,7 +29,6 @@ def getSmoking():
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING LIMIT "+limit);
         return jsonify(data = cursor.fetchall())
-
 
 @app.route('/getpolution')
 def getPolution():
