@@ -33,13 +33,17 @@ def getsmoking():
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING");
         db.close()
-        return json.dumps(data = cursor.fetchall())
+        data = cursor.fetchall()
+        json.dumps(data, use_decimal=True)
+        return data
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING LIMIT "+limit);
         db.close()
-        return json.dumps(data = cursor.fetchall())
+        data = cursor.fetchall()
+        json.dumps(data, use_decimal=True)
+        return data
 
 
 
