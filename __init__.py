@@ -104,6 +104,12 @@ def getpollution():
         return jsonify(data = cursor.fetchall())
 
 
+@app.route('/test')
+def test():
+    data = 19.123
+    return jsonify(data)
+
+
 @app.route("/")
 def hello():
     return "Hello, apache!!!!!"
