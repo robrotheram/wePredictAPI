@@ -9,8 +9,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 
 host="localhost"
-port=3306
-port=330
+port="3306"
 user="root"
 passwd="mallard"
 dbs="wePredict"
