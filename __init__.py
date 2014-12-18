@@ -3,8 +3,10 @@ from flask import request
 import MySQLdb
 
 app = Flask(__name__)
-app.debug = True;
-app.propagate_exceptions = True;
+
+app.config['DEBUG'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
 
 @app.route('/getadress')
 def getAdress():
