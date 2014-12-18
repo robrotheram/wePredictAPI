@@ -27,13 +27,13 @@ def getsmoking():
     if limit is None:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from ADRESS");
+        cursor.execute("SELECT * from SMOKING");
         db.close()
         return jsonify(data = cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from ADRESS LIMIT "+limit);
+        cursor.execute("SELECT * from SMOKING LIMIT "+limit);
         db.close()
         return jsonify(data = cursor.fetchall())
 
