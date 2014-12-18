@@ -24,6 +24,79 @@ def getAdress():
         cursor.execute("SELECT * from ADRESS LIMIT "+limit);
         return jsonify(data = cursor.fetchall())
 
+
+
+
+@app.route('/getSMOKING')
+def getSMOKING():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from SMOKING");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from SMOKING LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
+
+
+
+@app.route('/getPOLLUTION')
+def getPOLLUTION():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from POLLUTION");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from POLLUTION LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
+
+
+
+@app.route('/getFLU')
+def getFLU():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from FLU");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from FLU LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
+
+@app.route('/getCOPD')
+def getAdress():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from COPD");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from COPD LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
+
+@app.route('/getASTHMA_QOF')
+def getASTHMA_QOF():
+    limit = request.args.get('limit')
+    if limit is None:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from ASTHMA_QOF");
+        return jsonify(data = cursor.fetchall())
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * from ASTHMA_QOF LIMIT "+limit);
+        return jsonify(data = cursor.fetchall())
+
+
+
 @app.route("/")
 def hello():
     return "Hello, apache!!!!!"
