@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask import request
 import MySQLdb
+from decimal import *
 
 app = Flask(__name__)
 
@@ -106,7 +107,7 @@ def getpollution():
 
 @app.route('/test')
 def test():
-    data = 19.123
+    data = Decimal(19.123)
     return jsonify(data)
 
 
