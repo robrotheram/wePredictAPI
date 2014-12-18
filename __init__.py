@@ -114,7 +114,7 @@ def test():
     return jsonify(data)
 
 @app.route('/test_table')
-def test():
+def testtable():
     db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
     cursor = db.cursor()
     cursor.execute("SELECT * from test_table");
