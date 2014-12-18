@@ -29,8 +29,8 @@ def Authenticate():
 def COPD():
     cursor = mysql.connect().cursor()
     cursor.execute("SELECT * from COPD");
-    data = cursor.fetchall
-    return jsonify(data), 201
+    data = cursor.fetchall();
+    return jsonify(data[0]), 201
 
 
 @app.route("/")
