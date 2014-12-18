@@ -12,7 +12,7 @@ def testdb():
     return jsonify(data = cursor.fetchall())
 
 
-@app.route('/getAdress')
+@app.route('/getadress')
 def getAdress():
     limit = request.args.get('limit')
     if limit is None:
@@ -27,8 +27,8 @@ def getAdress():
 
 
 
-@app.route('/getSMOKING')
-def getSMOKING():
+@app.route('/getsmoking')
+def getSmoking():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
@@ -42,8 +42,8 @@ def getSMOKING():
 
 
 
-@app.route('/getPOLLUTION')
-def getPOLLUTION():
+@app.route('/getpolution')
+def getPolution():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
@@ -57,8 +57,8 @@ def getPOLLUTION():
 
 
 
-@app.route('/getFLU')
-def getFLU():
+@app.route('/getflu')
+def getFlu():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
@@ -70,8 +70,8 @@ def getFLU():
         return jsonify(data = cursor.fetchall())
 
 
-@app.route('/getCOPD')
-def getCOPD():
+@app.route('/getcopd')
+def getCopd():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
@@ -83,8 +83,8 @@ def getCOPD():
         return jsonify(data = cursor.fetchall())
 
 
-@app.route('/getASTHMA_QOF')
-def getASTHMA_QOF():
+@app.route('/getasthamqof(')
+def getAsthamQof():
     limit = request.args.get('limit')
     if limit is None:
         cursor = db.cursor()
