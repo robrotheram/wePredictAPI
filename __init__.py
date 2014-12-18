@@ -3,11 +3,12 @@ from flask import request
 import MySQLdb
 
 app = Flask(__name__)
-db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+
 
 @app.route('/getadress')
 def getAdress():
     limit = request.args.get('limit')
+    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
     if limit is None:
         cursor = db.cursor()
         cursor.execute("SELECT * from ADRESS");
