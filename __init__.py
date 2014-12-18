@@ -1,37 +1,19 @@
 from flask import Flask, jsonify
 from flask import request
-from flaskext.mysql import MySQL
-
-mysql = MySQL()
-
+from flask.ext.sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 app = Flask(__name__)
 
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'mallard'
-app.config['MYSQL_DATABASE_DB'] = 'wePredict'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mallard@localhost/wePredict'
+from models import db
+db.init_app(app)
 
-@app.route("/Authenticate")
-def Authenticate():
-    username = request.args.get('UserName')
-    password = request.args.get('Password')
-    cursor = mysql.connect().cursor()
-    cursor.execute("SELECT * from users where username='" + username + "' and password='" + password + "'")
-    data = cursor.fetchone()
-    if data is None:
-        return "Username or Password is wrong"
-    else:
-        return "Logged in successfully"
-
-
-@app.route("/COPD")
-def COPD():
-    cursor = mysql.connect().cursor()
-    cursor.execute("SELECT * from COPD");
-    data = cursor.fetchall();
-    return jsonify(data[0]), 201
-
+@app.route('/testdb')
+def testdb():
+  if db.session.query("1").from_statement("SELECT 1").all():
+    return 'It works.'
+  else:
+    return 'Something is broken.'
 
 @app.route("/")
 def hello():
