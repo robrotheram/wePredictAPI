@@ -30,70 +30,30 @@ def getAdress():
 @app.route('/getsmoking')
 def getSmoking():
     limit = request.args.get('limit')
-    if limit is None:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from SMOKING");
-        return jsonify(data = cursor.fetchall())
-    else:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from SMOKING LIMIT "+limit);
-        return jsonify(data = cursor.fetchall())
-
-
+    return "SMOKING"
 
 
 @app.route('/getpolution')
 def getPolution():
     limit = request.args.get('limit')
-    if limit is None:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from POLLUTION");
-        return jsonify(data = cursor.fetchall())
-    else:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from POLLUTION LIMIT "+limit);
-        return jsonify(data = cursor.fetchall())
-
-
+    return "POPULSTION"
 
 
 @app.route('/getflu')
 def getFlu():
     limit = request.args.get('limit')
-    if limit is None:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from FLU");
-        return jsonify(data = cursor.fetchall())
-    else:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from FLU LIMIT "+limit);
-        return jsonify(data = cursor.fetchall())
-
+    return "FLU"
 
 @app.route('/getcopd')
 def getCopd():
     limit = request.args.get('limit')
-    if limit is None:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from COPD");
-        return jsonify(data = cursor.fetchall())
-    else:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from COPD LIMIT "+limit);
-        return jsonify(data = cursor.fetchall())
+    return "COPD"
 
 
 @app.route('/getasthamqof(')
 def getAsthamQof():
     limit = request.args.get('limit')
-    if limit is None:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from ASTHMA_QOF");
-        return jsonify(data = cursor.fetchall())
-    else:
-        cursor = db.cursor()
-        cursor.execute("SELECT * from ASTHMA_QOF LIMIT "+limit);
-        return jsonify(data = cursor.fetchall())
+    return "ASMATHA"
 
 
 
