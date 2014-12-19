@@ -170,4 +170,4 @@ def hello():
 
 @app.route("/chart")
 def chartTest():
-    return render_template('chart_test.html.html')
+    return render_template('chart_test.html')
