@@ -1,5 +1,8 @@
 from flask import Flask, jsonify
 from flask import request
+import json
+from flask import Response
+
 from flask.ext.sqlalchemy import SQLAlchemy
 
 import MySQLdb
@@ -119,7 +122,11 @@ def testtable():
     cursor = db.cursor()
     cursor.execute("SELECT * from test_table");
     db.close()
-    return jsonify(data = cursor.fetchall())
+    data = cursor.fetchall()
+    #dataone = data[0]
+    filename = "bob"
+    js = { "name" : filename}
+    return Response(json.dumps(js),  mimetype='application/json')
 
 
 
