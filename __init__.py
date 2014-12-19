@@ -169,5 +169,5 @@ def hello():
 
 
 @app.route("/chart")
-def hello():
+def chartTest():
     return render_template('chart_test.html.html')
