@@ -3,6 +3,7 @@ from decimal import *
 from flask import Flask, jsonify
 from flask import request
 from flask import Response
+from flask import render_template
 import simplejson
 
 import MySQLdb
@@ -164,4 +165,4 @@ def testtable():
 
 @app.route("/")
 def hello():
-    return "Hello, apache!!!!!"
+    return render_template('index.html')
