@@ -125,10 +125,14 @@ def testtable():
     cursor.execute("SELECT * from test_table");
     db.close()
     data = cursor.fetchall()
+    js_data = []
+    for obj in data:
+        objjst = {"id": obj[0], "name": obj[1], "age": obj[2]}
+        js_data.append(objjst)
     dataone = data[0]
     filename = "bob"
     js = { "name" : filename}
-    return Response(simplejson.dumps(dataone),  mimetype='application/json')
+    return Response(simplejson.dumps(js_data),  mimetype='application/json')
 
 
 
