@@ -166,3 +166,8 @@ def testtable():
 @app.route("/")
 def hello():
     return render_template('index.html')
+
+
+@app.route("/chart")
+def hello():
+    return render_template('chart_test.html.html')
