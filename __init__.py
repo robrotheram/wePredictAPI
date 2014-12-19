@@ -126,7 +126,7 @@ def testtable():
     #dataone = data[0]
     filename = "bob"
     js = { "name" : filename}
-    return Response(json.dumps(js),  mimetype='application/json')
+    return Response(json.dumps(data),  mimetype='application/json')
 
 
 
