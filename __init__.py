@@ -1,19 +1,17 @@
+from decimal import *
+
 from flask import Flask, jsonify
 from flask import request
-import json
 from flask import Response
-import decimal
 import simplejson
-from flask.ext.sqlalchemy import SQLAlchemy
 
 import MySQLdb
-from decimal import *
+
 
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
-
 
 
 @app.route('/getadress')
@@ -24,13 +22,14 @@ def getAdress():
         cursor = db.cursor()
         cursor.execute("SELECT * from ADRESS");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from ADRESS LIMIT "+limit);
+        cursor.execute("SELECT * from ADRESS LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
+
 
 @app.route('/getsmoking')
 def getsmoking():
@@ -40,13 +39,40 @@ def getsmoking():
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        data = cursor.fetchall()
+        js_data = []
+        for obj in data:
+            objjst = {"Practice_Code": obj[0],
+                      "Value_12": obj[1],
+                      "Lower_CI_12": obj[2],
+                      "Upper_CI_12": obj[3],
+                      "Value_13": obj[4],
+                      "Lower_CI_13": obj[5],
+                      "Upper_CI_13": obj[6]
+            }
+
+            js_data.append(objjst)
+        return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from SMOKING LIMIT "+limit);
+        cursor.execute("SELECT * from SMOKING LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        data = cursor.fetchall()
+        js_data = []
+        for obj in data:
+            objjst = {"Practice_Code": obj[0],
+                      "Value_12": obj[1],
+                      "Lower_CI_12": obj[2],
+                      "Upper_CI_12": obj[3],
+                      "Value_13": obj[4],
+                      "Lower_CI_13": obj[5],
+                      "Upper_CI_13": obj[6]
+            }
+
+            js_data.append(objjst)
+        return Response(simplejson.dumps(js_data), mimetype='application/json')
+
 
 @app.route('/getflu')
 def getflu():
@@ -56,13 +82,14 @@ def getflu():
         cursor = db.cursor()
         cursor.execute("SELECT * from FLU");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from FLU LIMIT "+limit);
+        cursor.execute("SELECT * from FLU LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
+
 
 @app.route('/getcopd')
 def getcopd():
@@ -72,13 +99,14 @@ def getcopd():
         cursor = db.cursor()
         cursor.execute("SELECT * from COPD");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from COPD LIMIT "+limit);
+        cursor.execute("SELECT * from COPD LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
+
 
 @app.route('/getasmtha')
 def getAsmtha():
@@ -88,13 +116,14 @@ def getAsmtha():
         cursor = db.cursor()
         cursor.execute("SELECT * from ASTHMA_QOF");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from ASTHMA_QOF LIMIT "+limit);
+        cursor.execute("SELECT * from ASTHMA_QOF LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
+
 
 @app.route('/getpollution')
 def getpollution():
@@ -104,19 +133,20 @@ def getpollution():
         cursor = db.cursor()
         cursor.execute("SELECT * from POLLUTION");
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from POLLUTION LIMIT "+limit);
+        cursor.execute("SELECT * from POLLUTION LIMIT " + limit);
         db.close()
-        return jsonify(data = cursor.fetchall())
+        return jsonify(data=cursor.fetchall())
 
 
 @app.route('/test')
 def test():
     data = Decimal(19.123)
     return jsonify(data)
+
 
 @app.route('/test_table')
 def testtable():
@@ -129,11 +159,7 @@ def testtable():
     for obj in data:
         objjst = {"id": obj[0], "name": obj[1], "age": obj[2]}
         js_data.append(objjst)
-    dataone = data[0]
-    filename = "bob"
-    js = { "name" : filename}
-    return Response(simplejson.dumps(js_data),  mimetype='application/json')
-
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
 
 
 @app.route("/")
