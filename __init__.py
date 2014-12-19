@@ -125,10 +125,10 @@ def testtable():
     cursor.execute("SELECT * from test_table");
     db.close()
     data = cursor.fetchall()
-    #dataone = data[0]
+    dataone = data[0]
     filename = "bob"
     js = { "name" : filename}
-    return Response(simplejson.dumps(data),  mimetype='application/json')
+    return Response(simplejson.dumps(dataone),  mimetype='application/json')
 
 
 
