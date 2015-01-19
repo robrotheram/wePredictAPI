@@ -68,8 +68,7 @@ $(function () {
     //World map by jvectormap
 
 
-
-     $('#world-map').vectorMap({
+    $('#world-map').vectorMap({
         map: 'uk_mill_en',
         backgroundColor: "transparent",
         regionStyle: {
@@ -90,10 +89,6 @@ $(function () {
                 }
             ]
         },
-        onRegionLabelShow: function (e, el, code) {
-            if (typeof visitorsData[code] != "undefined")
-                el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
-        }
     });
 
 
