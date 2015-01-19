@@ -64,9 +64,8 @@ $(function () {
         "RU": 3000 //Russia
     };
 
-    $('#world-map').vectorMap({map: 'uk_mill_en'});
 
-    /*World map by jvectormap
+    //World map by jvectormap
 
 
 
@@ -97,7 +96,7 @@ $(function () {
         }
     });
 
-     */
+
     //Sparkline charts
     var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
     $('#sparkline-1').sparkline(myvalues, {
