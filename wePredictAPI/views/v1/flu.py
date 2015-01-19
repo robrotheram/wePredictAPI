@@ -5,18 +5,18 @@ from wePredictAPI import app
 import MySQLdb
 
 
-@app.route('/v1/getcopd')
-def getcopd():
+@app.route('/getflu')
+def getflu():
     limit = request.args.get('limit')
     if limit is None:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from COPD");
+        cursor.execute("SELECT * from FLU");
         db.close()
         return jsonify(data=cursor.fetchall())
     else:
         db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
         cursor = db.cursor()
-        cursor.execute("SELECT * from COPD LIMIT " + limit);
+        cursor.execute("SELECT * from FLU LIMIT " + limit);
         db.close()
         return jsonify(data=cursor.fetchall())
