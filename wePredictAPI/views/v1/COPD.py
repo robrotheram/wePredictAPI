@@ -34,6 +34,15 @@ def getcopdaverage():
     data = cursor.fetchall()
     js_data = []
     for obj in data:
-        objjst = {"2009": obj[0], "2010": obj[1], "2011": obj[2], "2012": obj[3], "2013": obj[4]}
-    js_data.append(objjst)
+        objjst = {"y": "2009", "value_y": obj[0]}
+        js_data.append(objjst)
+        objjst = {"y": "2010", "value_y": obj[1]}
+        js_data.append(objjst)
+        objjst = {"y": "2011", "value_y": obj[2]}
+        js_data.append(objjst)
+        objjst = {"y": "2012", "value_y": obj[3]}
+        js_data.append(objjst)
+        objjst = {"y": "2013", "value_y": obj[4]}
+        js_data.append(objjst)
+
     return Response(simplejson.dumps(js_data), mimetype='application/json')
