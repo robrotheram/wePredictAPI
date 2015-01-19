@@ -63,8 +63,14 @@ $(function () {
         "GB": 320, //Great Britain
         "RU": 3000 //Russia
     };
-    //World map by jvectormap
-    $('#world-map').vectorMap({
+
+    $('#world-map').vectorMap({map: 'uk_mill_en'});
+
+    /*World map by jvectormap
+
+
+
+     $('#world-map').vectorMap({
         map: 'uk_mill_en',
         backgroundColor: "transparent",
         regionStyle: {
@@ -91,6 +97,7 @@ $(function () {
         }
     });
 
+     */
     //Sparkline charts
     var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
     $('#sparkline-1').sparkline(myvalues, {
