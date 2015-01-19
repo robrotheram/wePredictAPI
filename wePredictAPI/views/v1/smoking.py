@@ -8,7 +8,7 @@ from wePredictAPI import app
 import MySQLdb
 
 
-@app.route('v1/getsmoking')
+@app.route('/v1/getsmoking')
 def getsmoking():
     limit = request.args.get('limit')
     if limit is None:

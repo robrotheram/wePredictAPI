@@ -5,7 +5,7 @@ from wePredictAPI import app
 import MySQLdb
 
 
-@app.route('v1/getasmtha')
+@app.route('/v1/getasmtha')
 def getAsmtha():
     limit = request.args.get('limit')
     if limit is None:
