@@ -130,32 +130,25 @@ $(function () {
     });
 
 
-    $.getJSON("data.json", function (json) { // callback function which gets called when your request completes.
-        Morris.Donut({
-            element: 'donut-example',
-            data: json // use returned data to plot the graph
-        });
-
+    $.getJSON("http://eyerange.co.uk/v1/getcopdaverage", function (json) { // callback function which gets called when your request completes.
         var line = new Morris.Line({
-        element: 'line-chart',
-        resize: true,
+            element: 'line-chart',
+            resize: true,
             data: json,
-        xkey: 'y',
-        ykeys: ['item1'],
-        labels: ['Item 1'],
-        lineColors: ['#efefef'],
-        lineWidth: 2,
-        hideHover: 'auto',
-        gridTextColor: "#fff",
-        gridStrokeWidth: 0.4,
-        pointSize: 4,
-        pointStrokeColors: ["#efefef"],
-        gridLineColor: "#efefef",
-        gridTextFamily: "Open Sans",
-        gridTextSize: 10
-    });
-
-
+            xkey: 'y',
+            ykeys: ['value_y'],
+            labels: ['Item value_y'],
+            lineColors: ['#efefef'],
+            lineWidth: 2,
+            hideHover: 'auto',
+            gridTextColor: "#fff",
+            gridStrokeWidth: 0.4,
+            pointSize: 4,
+            pointStrokeColors: ["#efefef"],
+            gridLineColor: "#efefef",
+            gridTextFamily: "Open Sans",
+            gridTextSize: 10
+        });
     });
 
 
