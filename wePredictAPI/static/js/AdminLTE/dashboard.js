@@ -222,8 +222,8 @@ $(function () {
 
 
     var projection = d3.geo.albers()
-        .center([-4, 54])
-        .rotate([-4.4, 0])
+        .center([-4.5, 54])
+        .rotate([-3, 0])
         .parallels([50, 60])
         .scale(3000)
         .translate([width / 2, height / 2]);
