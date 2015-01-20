@@ -225,7 +225,7 @@ $(function () {
         .center([0, 56])
         .rotate([0, 0])
         .parallels([50, 60])
-        .scale(width * 6)
+        .scale(1000)
         .translate([width / 2, height / 2]);
 
     var path = d3.geo.path().projection(projection);
@@ -289,7 +289,7 @@ $(function () {
 
 
             svg.append("path")
-                .datum(topojson.mesh(uk, uk.objects['uk-postcode-area'], function (a, b) {
+                .datum(topojson.mesh(uk, uk.objects['uk'], function (a, b) {
                     return a !== b;
                 }))
                 .attr("class", "mesh")
