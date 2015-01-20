@@ -183,7 +183,7 @@ $(function () {
     $("#loading-example").boxRefresh({
         source: "ajax/dashboard-boxrefresh-demo.php",
         onLoadDone: function (box) {
-            bar = new Morris.Bar({
+            var bar = new Morris.Bar({
                 element: 'bar-chart',
                 resize: true,
                 data: [
@@ -213,5 +213,91 @@ $(function () {
             //console.log("The element has been unchecked")
         }
     });
+
+
+    /* vector map */
+
+
+    var width = $("#map").width(),
+        height = $("#map").height();
+
+
+    var projection = d3.geo.albers()
+        .center([0, 56])
+        .rotate([0, 0])
+        .parallels([50, 60])
+        .scale(width * 6)
+        .translate([width / 2, height / 2]);
+
+    var path = d3.geo.path().projection(projection);
+
+    var svg = d3.select("#map").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var areas = ["AB", "AL", "B", "BA", "BB", "BD", "BH", "BL", "BN", "BR", "BS", "BT", "CA", "CB", "CF", "CH", "CM", "CO", "CR", "CT", "CV", "CW", "DA", "DD", "DE", "DG", "DH", "DL", "DN", "DT", "DY", "E", "EC", "EH", "EN", "EX", "FK", "FY", "G", "GL", "GU", "HA", "HD", "HG", "HP", "HR", "HS", "HU", "HX", "IG", "IP", "IV", "KA", "KT", "KW", "KY", "L", "LA", "LD", "LE", "LL", "LN", "LS", "LU", "M", "ME", "MK", "ML", "N", "NE", "NG", "NN", "NP", "NR", "NW", "OL", "OX", "PA", "PE", "PH", "PL", "PO", "PR", "RG", "RH", "RM", "S", "SA", "SE", "SG", "SK", "SL", "SM", "SN", "SO", "SP", "SR", "SS", "ST", "SW", "SY", "TA", "TD", "TF", "TN", "TQ", "TR", "TS", "TW", "UB", "W", "WA", "WC", "WD", "WF", "WN", "WR", "WS", "WV", "YO", "ZE"];
+
+
+    $.getJSON("http://eyerange.co.uk/v1/getflu_2012_address", function (data) {
+        var areadata = {};
+        _.each(areas, function (a) {
+            id = a;
+            var x = jQuery.grep(data, function (n, i) {
+                return n.pc == id
+            })
+            if (x[0] != null) {
+                areadata[a] = x[0].value;
+            }
+
+        });
+        var color = d3.scale.quantize().range([
+            "rgb(198,219,239)",
+            "rgb(158,202,225)",
+            "rgb(107,174,214)",
+            "rgb(66,146,198)",
+            "rgb(33,113,181)",
+            "rgb(8,81,156)",
+            "rgb(8,48,107)"]);
+
+
+        color.domain(d3.extent(_.toArray(areadata)));
+
+        d3.json("data/uk-postcode-area.json", function (error, uk) {
+            svg.selectAll(".postcode_area")
+                .data(topojson.feature(uk, uk.objects['uk-postcode-area']).features)
+                .enter().append("path")
+                .attr("class", "postcode_area")
+                .attr("d", path)
+                .style("fill", function (d) {
+                    //Get data value
+                    var value = areadata[d.id];
+
+                    if (value) {
+                        return color(value);
+                    } else {
+                        return "#AAA";
+                    }
+                })
+                .append("svg:title")
+                .attr("transform", function (d) {
+                    return "translate(" + path.centroid(d) + ")";
+                })
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    var value = areadata[d.id];
+                    return "PC " + d.id + " Flu:" + value;
+                });
+
+
+            svg.append("path")
+                .datum(topojson.mesh(uk, uk.objects['uk-postcode-area'], function (a, b) {
+                    return a !== b;
+                }))
+                .attr("class", "mesh")
+                .attr("d", path);
+
+        });
+    });
+
 
 });
