@@ -241,7 +241,7 @@ $(function () {
     $.getJSON("http://eyerange.co.uk/v1/getflu_2012_address", function (data) {
         var areadata = {};
         _.each(areas, function (a) {
-            id = a;
+            var id = a;
             var x = jQuery.grep(data, function (n, i) {
                 return n.pc == id
             })
@@ -262,7 +262,7 @@ $(function () {
 
         color.domain(d3.extent(_.toArray(areadata)));
 
-        d3.json("data/uk-postcode-area.json", function (error, uk) {
+        d3.json("../../data/uk-postcode-area.json", function (error, uk) {
             svg.selectAll(".postcode_area")
                 .data(topojson.feature(uk, uk.objects['uk-postcode-area']).features)
                 .enter().append("path")
