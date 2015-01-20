@@ -140,7 +140,6 @@ $(function () {
     });
 
 
-
     //Donut Chart
     var donut = new Morris.Donut({
         element: 'sales-chart',
@@ -263,7 +262,6 @@ $(function () {
         color.domain(d3.extent(_.toArray(areadata)));
 
         d3.json("../../static/data/uk-postcode-area.json", function (error, uk) {
-            d3.json("../../static/data/uk-postcode-area.json", function (error, uk) {
             svg.selectAll(".postcode_area")
                 .data(topojson.feature(uk, uk.objects['uk']).features)
                 .enter().append("path")
