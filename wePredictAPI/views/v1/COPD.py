@@ -46,3 +46,33 @@ def getcopdaverage():
         js_data.append(objjst)
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
+
+
+@app.route('/v1/get_copd_ASTHMA_average')
+def getcopdaverage():
+    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+    cursor = db.cursor()
+    cursor.execute("SELECT Avg(COPD.Value_09), Avg(COPD.Value_10), Avg(COPD.Value_11), Avg(COPD.Value_12), "
+                   "Avg(COPD.Value_13), Avg(ASTHMA_QOF.Value_09), Avg(ASTHMA_QOF.Value_10), Avg(ASTHMA_QOF.Value_11), "
+                   "Avg(ASTHMA_QOF.Value_12), Avg(ASTHMA_QOF.Value_13) FROM COPD "
+                   "Join ASTHMA_QOF  on COPD.Practice_Code = ASTHMA_QOF.Practice_Code");
+    db.close()
+    data = cursor.fetchall()
+    js_data = []
+    for obj in data:
+        objjst = {"y": "2009", "value_COPD": obj[0], "value_ASMTHA": obj[5]}
+        js_data.append(objjst)
+        objjst = {"y": "2010", "value_COPD": obj[1], "value_ASMTHA": obj[6]}
+        js_data.append(objjst)
+        objjst = {"y": "2011", "value_COPD": obj[2], "value_ASMTHA": obj[7]}
+        js_data.append(objjst)
+        objjst = {"y": "2012", "value_COPD": obj[3], "value_ASMTHA": obj[8]}
+        js_data.append(objjst)
+        objjst = {"y": "2013", "value_COPD": obj[4], "value_ASMTHA": obj[9]}
+        js_data.append(objjst)
+
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
+
+
+
+
