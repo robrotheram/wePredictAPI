@@ -222,10 +222,10 @@ $(function () {
 
 
     var projection = d3.geo.albers()
-        .center([0, 53])
+        .center([0, 54])
         .rotate([0, 0])
         .parallels([50, 60])
-        .scale(2000)
+        .scale(2500)
         .translate([width / 2, height / 2]);
 
     var path = d3.geo.path().projection(projection);
