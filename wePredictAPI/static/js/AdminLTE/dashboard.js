@@ -124,8 +124,8 @@ $(function () {
             resize: true,
             data: jsonData,
             xkey: 'y',
-            ykeys: ['value_ASMTHA', 'value_COPD'],
-            labels: ['ASMTHA', 'COPD'],
+            ykeys: ['value_COPD', 'value_ASMTHA'],
+            labels: ['COPD', 'ASMTHA'],
             lineColors: ['#a0d0e0', '#3c8dbc'],
             hideHover: 'auto'
         });
