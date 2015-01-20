@@ -34,7 +34,7 @@ def getflu12adress():
     data = cursor.fetchall()
     js_data = []
     for obj in data:
-        objjst = {obj[1]: obj[0]}  # Postcode first Value second
+        objjst = {"pc": obj[1], "value": obj[0]}  # Postcode first Value second
         js_data.append(objjst)
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
