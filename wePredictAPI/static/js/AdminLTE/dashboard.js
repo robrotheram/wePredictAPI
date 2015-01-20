@@ -262,9 +262,10 @@ $(function () {
 
         color.domain(d3.extent(_.toArray(areadata)));
 
-        d3.json("../../data/uk-postcode-area.json", function (error, uk) {
+        d3.json("../../static/data/uk-postcode-area.json", function (error, uk) {
+            d3.json("../../static/data/uk-postcode-area.json", function (error, uk) {
             svg.selectAll(".postcode_area")
-                .data(topojson.feature(uk, uk.objects['uk-postcode-area']).features)
+                .data(topojson.feature(uk, uk.objects['uk']).features)
                 .enter().append("path")
                 .attr("class", "postcode_area")
                 .attr("d", path)
