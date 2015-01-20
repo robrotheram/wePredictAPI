@@ -26,7 +26,7 @@ def getcopd():
 
 
 @app.route('/v1/getcopdaverage')
-def getcopdaverage():
+def getcopdasthmaaverage():
     db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
     cursor = db.cursor()
     cursor.execute("SELECT Avg(Value_09), Avg(Value_10), Avg(Value_11), Avg(Value_12), Avg(Value_13) FROM COPD");
