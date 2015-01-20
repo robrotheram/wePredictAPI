@@ -225,7 +225,7 @@ $(function () {
         .center([0, 56])
         .rotate([0, 0])
         .parallels([50, 60])
-        .scale(1000)
+        .scale(2000)
         .translate([width / 2, height / 2]);
 
     var path = d3.geo.path().projection(projection);
