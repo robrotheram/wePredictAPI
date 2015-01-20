@@ -32,7 +32,7 @@ def getflu12adress():
         "SELECT SUM(Value_12), SUBSTRING(Postcode,1,2) As PC FROM FLU Join ADRESS on FLU.Practice_Code = ADRESS.PracticeCode GROUP BY PC;");
     db.close()
     data = cursor.fetchall()
-    js_data = {}
+    js_data = []
     for obj in data:
         objjst = {obj[1]: obj[0]}  # Postcode first Value second
         js_data.append(objjst)
