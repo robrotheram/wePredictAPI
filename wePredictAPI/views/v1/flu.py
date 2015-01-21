@@ -1,13 +1,11 @@
 from flask import jsonify
 from flask import request
 from flask import Response
-import simplejson
-
-from wePredictAPI import app
-from wePredictAPI.views.settings import *
-
-
 import MySQLdb
+
+import simplejson
+from wePredictAPI import app
+from wePredictAPI.settings import *
 
 
 @app.route('/v1/getflu')
@@ -20,7 +18,7 @@ def getflu():
         db.close()
         return jsonify(data=cursor.fetchall())
     else:
-        db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
         cursor = db.cursor()
         cursor.execute("SELECT * from FLU LIMIT " + limit);
         db.close()
@@ -29,7 +27,7 @@ def getflu():
 
 @app.route('/v1/getflu_2012_address')
 def getflu12adress():
-    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
     cursor = db.cursor()
     cursor.execute(
         "SELECT SUM(Value_12), SUBSTRING(Postcode,1,2) As PC FROM FLU Join ADRESS on FLU.Practice_Code = ADRESS.PracticeCode GROUP BY PC;");

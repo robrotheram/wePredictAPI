@@ -5,6 +5,7 @@ from flask import Response
 import simplejson
 
 from wePredictAPI import app
+from wePredictAPI.settings import *
 import MySQLdb
 
 
@@ -12,7 +13,7 @@ import MySQLdb
 def getsmoking():
     limit = request.args.get('limit')
     if limit is None:
-        db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING");
         db.close()
@@ -31,7 +32,7 @@ def getsmoking():
             js_data.append(objjst)
         return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
-        db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
         cursor = db.cursor()
         cursor.execute("SELECT * from SMOKING LIMIT " + limit);
         db.close()

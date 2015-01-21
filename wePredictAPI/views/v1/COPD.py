@@ -5,6 +5,7 @@ from flask import Response
 import simplejson
 
 from wePredictAPI import app
+from wePredictAPI.settings import *
 import MySQLdb
 
 
@@ -12,13 +13,13 @@ import MySQLdb
 def getcopd():
     limit = request.args.get('limit')
     if limit is None:
-        db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
         cursor = db.cursor()
         cursor.execute("SELECT * from COPD");
         db.close()
         return jsonify(data=cursor.fetchall())
     else:
-        db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
         cursor = db.cursor()
         cursor.execute("SELECT * from COPD LIMIT " + limit);
         db.close()
@@ -27,7 +28,7 @@ def getcopd():
 
 @app.route('/v1/getcopdaverage')
 def getcopdaverage():
-    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
     cursor = db.cursor()
     cursor.execute("SELECT Avg(Value_09), Avg(Value_10), Avg(Value_11), Avg(Value_12), Avg(Value_13) FROM COPD");
     db.close()
@@ -50,7 +51,7 @@ def getcopdaverage():
 
 @app.route('/v1/get_copd_ASTHMA_average')
 def getcopdasthmaaverage():
-    db = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="mallard", db="wePredict")
+    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
     cursor = db.cursor()
     cursor.execute("SELECT Avg(COPD.Value_09), Avg(COPD.Value_10), Avg(COPD.Value_11), Avg(COPD.Value_12), "
                    "Avg(COPD.Value_13), Avg(ASTHMA_QOF.Value_09), Avg(ASTHMA_QOF.Value_10), Avg(ASTHMA_QOF.Value_11), "
