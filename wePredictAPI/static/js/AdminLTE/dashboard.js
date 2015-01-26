@@ -94,7 +94,7 @@ $(function () {
     });
 
 
-    $.getJSON("http://eyerange.co.uk/v1/getcopdaverage", function (json) { // callback function which gets called when your request completes.
+    $.getJSON("/v1/getcopdaverage", function (json) { // callback function which gets called when your request completes.
         var line = new Morris.Line({
             element: 'line-chart',
             resize: true,
@@ -116,7 +116,7 @@ $(function () {
     });
 
 
-    $.getJSON("http://eyerange.co.uk/v1/get_copd_ASTHMA_average", function (jsonData) { // callback function which gets called when your request completes.
+    $.getJSON("/v1/get_copd_ASTHMA_average", function (jsonData) { // callback function which gets called when your request completes.
         /* Morris.js Charts */
         // Sales chart
         var area = new Morris.Area({
@@ -216,7 +216,7 @@ $(function () {
     var areas = ["AB", "AL", "B", "BA", "BB", "BD", "BH", "BL", "BN", "BR", "BS", "BT", "CA", "CB", "CF", "CH", "CM", "CO", "CR", "CT", "CV", "CW", "DA", "DD", "DE", "DG", "DH", "DL", "DN", "DT", "DY", "E", "EC", "EH", "EN", "EX", "FK", "FY", "G", "GL", "GU", "HA", "HD", "HG", "HP", "HR", "HS", "HU", "HX", "IG", "IP", "IV", "KA", "KT", "KW", "KY", "L", "LA", "LD", "LE", "LL", "LN", "LS", "LU", "M", "ME", "MK", "ML", "N", "NE", "NG", "NN", "NP", "NR", "NW", "OL", "OX", "PA", "PE", "PH", "PL", "PO", "PR", "RG", "RH", "RM", "S", "SA", "SE", "SG", "SK", "SL", "SM", "SN", "SO", "SP", "SR", "SS", "ST", "SW", "SY", "TA", "TD", "TF", "TN", "TQ", "TR", "TS", "TW", "UB", "W", "WA", "WC", "WD", "WF", "WN", "WR", "WS", "WV", "YO", "ZE"];
 
 
-    $.getJSON("http://eyerange.co.uk/v1/getflu_2012_address", function (data) {
+    $.getJSON("/v1/getflu_2012_address", function (data) {
         var areadata = {};
         _.each(areas, function (a) {
             var id = a;
