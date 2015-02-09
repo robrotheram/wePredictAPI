@@ -1,0 +1,12 @@
+## pip project requirements
+
+# core project
+Flask
+MarkupSafe
+MySQL-python
+simplejson
+DBUtils
+
+# devops
+
+gunicorn==0.17.2
