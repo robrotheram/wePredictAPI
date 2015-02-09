@@ -17,7 +17,8 @@ WORKERS=6
 LOGFILE=${OPENSHIFT_DIY_LOG_DIR}gunicorn_out.log
 ACCESS_LOGFILE=${OPENSHIFT_DIY_LOG_DIR}gunicorn_access.log
 PIDFILE=${OPENSHIFT_DATA_DIR}gunicorn.pid
-
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'wsgi.wsgi.application'
 # Execute gunicorn daemon
 
 $GUNICORN_BIN $OPENSHIFT_DIY_IP:$OPENSHIFT_DIY_PORT \
