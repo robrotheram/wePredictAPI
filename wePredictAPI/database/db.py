@@ -17,4 +17,11 @@ class DB(object):
 
 
     def getConnection(self):
-        return self.pool.connection();
+        return self.pool.connection()
+
+    def getResult(self,querry):
+        db = self.getConnection()
+        cursor = db.cursor()
+        cursor.execute(querry)
+        db.close()
+        return cursor.fetchall()
