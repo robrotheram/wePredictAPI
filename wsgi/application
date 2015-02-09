@@ -20,4 +20,4 @@ except IOError:
 
 
 
-from wePredictAPI import app as application
+from wePredictAPI.app import app as application
