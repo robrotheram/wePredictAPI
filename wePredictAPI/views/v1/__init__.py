@@ -1,7 +1,7 @@
 __author__ = 'robert'
 from flask import render_template
 
-from wePredictAPI import app
+from wePredictAPI.app import app
 
 
 @app.route("/")
