@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask import request
 
-from wePredictAPI import app
+from wePredictAPI.app import app
 from wePredictAPI.settings import *
 import MySQLdb
 

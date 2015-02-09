@@ -1,8 +1,8 @@
 from flask import jsonify
 from flask import request
 
-from wePredictAPI import app
-from wePredictAPI import databaseConnection
+from wePredictAPI.app  import app
+from wePredictAPI.app  import databaseConnection
 
 @app.route('/v1/getasmtha')
 def getAsmtha():

@@ -4,7 +4,7 @@ from flask import request
 from flask import Response
 import simplejson
 
-from wePredictAPI import app
+from wePredictAPI.app import app
 from wePredictAPI.settings import *
 import MySQLdb
 
