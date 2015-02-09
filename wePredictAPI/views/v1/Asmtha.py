@@ -2,9 +2,8 @@ from flask import jsonify
 from flask import request
 
 from wePredictAPI import app
-from wePredictAPI import database
+from wePredictAPI import databaseConnection
 
-from wePredictAPI.settings import *
 
 
 
@@ -12,13 +11,13 @@ from wePredictAPI.settings import *
 def getAsmtha():
     limit = request.args.get('limit')
     if limit is None:
-        db = database.getConnection()
+        db = databaseConnection.getConnection()
         cursor = db.cursor()
         cursor.execute("SELECT * from ASTHMA_QOF")
         db.close()
         return jsonify(data=cursor.fetchall())
     else:
-        db = database.getConnection()
+        db = databaseConnection.getConnection()
         cursor = db.cursor()
         cursor.execute("SELECT * from ASTHMA_QOF LIMIT " + limit)
         db.close()
