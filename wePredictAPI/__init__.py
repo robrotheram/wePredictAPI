@@ -3,6 +3,8 @@ from flask import Flask
 from wePredictAPI.database.db import DB
 
 app = Flask(__name__)
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
 database =  DB()
 
 
