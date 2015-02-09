@@ -1,14 +1,10 @@
 __author__ = 'robert'
 from flask import Flask
-from DBUtils.PooledDB import PooledDB
-from wePredictAPI.settings import *
-import MySQLdb
-
-pool = PooledDB( creator = MySQLdb, mincached = 5, db = database, host = hostname, user = username, passwd= password, charset = "utf8", use_unicode = True)
-__db = pool.connection(0)
-
+from wePredictAPI.database.db import DB
 
 app = Flask(__name__)
+database =  DB()
+
 
 import wePredictAPI.views.v1
 import wePredictAPI.views.v1.Asmtha

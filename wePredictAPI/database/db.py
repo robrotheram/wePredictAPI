@@ -1,12 +1,20 @@
 __author__ = 'robertfletcher'
-
+from DBUtils.PooledDB import PooledDB
+from wePredictAPI.settings import *
 import MySQLdb
 
-from wePredictAPI.settings import *
+class DB(object):
+
+    def __init__(self):
+        self.pool = PooledDB(creator = MySQLdb,
+                mincached = 5,
+                db = database,
+                host = hostname,
+                user = username,
+                passwd= password,
+                charset = "utf8",
+                use_unicode = True)
 
 
-def dbconnect():
-    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
-    return db
-
-
+    def getConnection(self):
+        return self.pool.connection();
