@@ -5,34 +5,21 @@ from flask import Response
 import simplejson
 
 from wePredictAPI import app
-from wePredictAPI.settings import *
-import MySQLdb
+from wePredictAPI import databaseConnection
 
 
 @app.route('/v1/getcopd')
 def getcopd():
     limit = request.args.get('limit')
     if limit is None:
-        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
-        cursor = db.cursor()
-        cursor.execute("SELECT * from COPD");
-        db.close()
-        return jsonify(data=cursor.fetchall())
+        return jsonify(data= databaseConnection.getResult("SELECT * from COPD"))
     else:
-        db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
-        cursor = db.cursor()
-        cursor.execute("SELECT * from COPD LIMIT " + limit);
-        db.close()
-        return jsonify(data=cursor.fetchall())
+        return jsonify(data=databaseConnection.getResult("SELECT * from COPD LIMIT " + limit))
 
 
 @app.route('/v1/getcopdaverage')
 def getcopdaverage():
-    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
-    cursor = db.cursor()
-    cursor.execute("SELECT Avg(Value_09), Avg(Value_10), Avg(Value_11), Avg(Value_12), Avg(Value_13) FROM COPD");
-    db.close()
-    data = cursor.fetchall()
+    data = databaseConnection.getResult("SELECT Avg(Value_09), Avg(Value_10), Avg(Value_11), Avg(Value_12), Avg(Value_13) FROM COPD")
     js_data = []
     for obj in data:
         objjst = {"y": "2009", "value_y": obj[0]}
@@ -51,14 +38,10 @@ def getcopdaverage():
 
 @app.route('/v1/get_copd_ASTHMA_average')
 def getcopdasthmaaverage():
-    db = MySQLdb.connect(host=hostname, port=3306, user=username, passwd=password, db=database)
-    cursor = db.cursor()
-    cursor.execute("SELECT Avg(COPD.Value_09), Avg(COPD.Value_10), Avg(COPD.Value_11), Avg(COPD.Value_12), "
+    data = databaseConnection.getResult("SELECT Avg(COPD.Value_09), Avg(COPD.Value_10), Avg(COPD.Value_11), Avg(COPD.Value_12), "
                    "Avg(COPD.Value_13), Avg(ASTHMA_QOF.Value_09), Avg(ASTHMA_QOF.Value_10), Avg(ASTHMA_QOF.Value_11), "
                    "Avg(ASTHMA_QOF.Value_12), Avg(ASTHMA_QOF.Value_13) FROM COPD "
-                   "Join ASTHMA_QOF  on COPD.Practice_Code = ASTHMA_QOF.Practice_Code");
-    db.close()
-    data = cursor.fetchall()
+                   "Join ASTHMA_QOF  on COPD.Practice_Code = ASTHMA_QOF.Practice_Code")
     js_data = []
     for obj in data:
         objjst = {"y": "2009", "value_COPD": obj[0], "value_ASMTHA": obj[5]}
