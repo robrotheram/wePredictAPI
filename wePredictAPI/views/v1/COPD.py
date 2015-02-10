@@ -58,5 +58,18 @@ def getcopdasthmaaverage():
     return Response(simplejson.dumps(js_data), mimetype='application/json')
 
 
+@app.route('/v1/testGet')
+def testGet():
+    cOPDData = databaseConnection.getResult("SELECT CCG, COPD.Value_12 FROM wePredict.CCG  join wePredict.COPD on COPD.Practice_Code = CCG.Practice_Code group by CCG")
+    smokingData = databaseConnection.getResult("SELECT CCG, SMOKING.Value_12 FROM wePredict.CCG  join wePredict.SMOKING on SMOKING.Practice_Code = CCG.Practice_Code group by CCG")
+    fluData = databaseConnection.getResult("SELECT CCG, FLU.Value_12 FROM wePredict.CCG  join wePredict.FLU on FLU.Practice_Code = CCG.Practice_Code group by CCG")
+
+    js_data = []
+    for x in range(0, len(cOPDData)):
+        objjst = {"y": "2009", "value_CCG": cOPDData[x][0], "value_COPD": cOPDData[x][1], "value_SMOKING": smokingData[x][1], "value_FLU": fluData[x][1]}
+        js_data.append(objjst)
+
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
+
 
 
