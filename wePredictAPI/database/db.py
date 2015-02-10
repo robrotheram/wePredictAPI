@@ -1,12 +1,12 @@
 __author__ = 'robertfletcher'
 from DBUtils.PooledDB import PooledDB
 from wePredictAPI.settings import *
-import oursql
+import _mysql
 
 class DB(object):
 
     def __init__(self):
-        self.pool = PooledDB(creator = oursql,
+        self.pool = PooledDB(creator = _mysql,
                 mincached = 5,
                 db = database,
                 host = hostname,
