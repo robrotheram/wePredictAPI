@@ -71,5 +71,16 @@ def testGet():
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
 
+@app.route('/v1/testGetTWO')
+def testGetTWO():
+    cOPDData = databaseConnection.getResult("SELECT CCG, COPD.Value_12,FLU.Value_12, SMOKING.Value_12 FROM wePredict.CCG join wePredict.COPD on COPD.Practice_Code = CCG.Practice_Code join wePredict.FLU on FLU.Practice_Code = CCG.Practice_Code join wePredict.SMOKING on SMOKING.Practice_Code = CCG.Practice_Code  group by CCG")
+
+    js_data = []
+    for x in range(0, len(cOPDData)):
+        objjst = {"y": "2009", "value_CCG": cOPDData[x][0], "value_COPD": cOPDData[x][1], "value_SMOKING": cOPDData[x][1], "value_FLU": cOPDData[x][1]}
+        js_data.append(objjst)
+
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
+
 
 
