@@ -7,27 +7,6 @@
 
 $(function () {
     "use strict";
-
-    $('.daterange').daterangepicker(
-        {
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-                'Last 7 Days': [moment().subtract('days', 6), moment()],
-                'Last 30 Days': [moment().subtract('days', 29), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-            },
-            startDate: moment().subtract('days', 29),
-            endDate: moment()
-        },
-        function (start, end) {
-            alert("You chose: " + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        });
-
-    /* jQueryKnob */
-    $(".knob").knob();
-
     //jvectormap data
     var visitorsData = {
         "UKL": 398, //USA
@@ -56,41 +35,6 @@ $(function () {
                 }
             ]
         }
-    });
-
-
-    //Sparkline charts
-    var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
-    $('#sparkline-1').sparkline(myvalues, {
-        type: 'line',
-        lineColor: '#92c1dc',
-        fillColor: "#ebf4f9",
-        height: '50',
-        width: '80'
-    });
-    myvalues = [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921];
-    $('#sparkline-2').sparkline(myvalues, {
-        type: 'line',
-        lineColor: '#92c1dc',
-        fillColor: "#ebf4f9",
-        height: '50',
-        width: '80'
-    });
-    myvalues = [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21];
-    $('#sparkline-3').sparkline(myvalues, {
-        type: 'line',
-        lineColor: '#92c1dc',
-        fillColor: "#ebf4f9",
-        height: '50',
-        width: '80'
-    });
-
-    //The Calender
-    $("#calendar").datepicker();
-
-    //SLIMSCROLL FOR CHAT WIDGET
-    $('#chat-box').slimScroll({
-        height: '250px'
     });
 
 
