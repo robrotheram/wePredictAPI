@@ -13,7 +13,6 @@ class DB(object):
                 user = username,
                 passwd= password,
                 charset = "utf8",
-                cursorclass=MySQLdb.cursors.SSCursor,
                 use_unicode = True)
 
 
