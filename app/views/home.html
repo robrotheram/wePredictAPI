@@ -1,0 +1,43 @@
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="panel panel-default ">
+             <div class="panel-heading clearfix"style="background-color: #286090">
+                <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 1</h4>
+            </div>
+            <div class="panel-body" style="width:100%;">
+                <img src="http://js.devexpress.com/Content/images/doc/14_2/ChartJS/StackedBar.png" width="100%">
+            </div>
+        </div>
+
+
+
+            <div class="panel panel-default ">
+                <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
+                </div>
+                <div class="panel-body" style="width:100%;">
+                    <img src="http://js.devexpress.com/Content/images/doc/14_2/ChartJS/Bar.png" width="100%">
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-7" style="min-height:100%;height:100%">
+            <div class="panel panel-default " style="min-height:100%;height:100%">
+                <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Main Map</h4>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-sm">Flu Data</button>
+                        <button class="btn btn-default btn-sm">COPD Data</button>
+                        <button class="btn btn-default btn-sm">Asmath</button>
+                    </div>
+                </div>
+                <div class="img-rounded" style=" width:20%;background-color:#286090; color: #ffffff;padding:10px;position: absolute; top:80px;right: 20px;" id="CCGData"></div>
+                <div class="panel-body" style="width:100%;" id="main">
+                    <ccg-map callback-fn="alert(id,desc)"></ccg-map>
+                </div>
+            </div>
+        </div>
+    </div>
