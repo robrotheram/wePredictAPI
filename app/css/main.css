@@ -1,5 +1,6 @@
 @import "../components/bootstrap/dist/css/bootstrap.css";
 @import "../components/angular/angular-csp.css";
+@import "../components/angular-chart.js/dist/angular-chart.css";
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -59,7 +60,11 @@ code {
     color:#eeeeee;
 }
 
+.ccg{
+    stroke: #000;
+    stroke-width: 1.5px;
 
+}
 .country:hover{
     stroke: #fff;
     stroke-width: 1.5px;
