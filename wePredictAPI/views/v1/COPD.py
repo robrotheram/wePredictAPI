@@ -33,11 +33,6 @@ def getcopdaverage():
         objjst = {"y": "2013", "value_y": obj[4]}
         js_data.append(objjst)
 
-    Response.headers['Access-Control-Allow-Origin'] = '*'
-    Response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT'
-    headers = request.headers.get('Access-Control-Request-Headers')
-    if headers:
-        Response.headers['Access-Control-Allow-Headers'] = headers
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
 
