@@ -1,7 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 from wePredictAPI.database.db import DB
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
 databaseConnection = DB()
