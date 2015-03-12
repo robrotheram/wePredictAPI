@@ -33,11 +33,37 @@ body {
     overflow: hidden;
 }
 
+
+
+
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.business-header {
+    height: 200px;
+    background: url('http://www.zite.com/res/img/2.0splash/header_background.png') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+/* Customize the text color and shadow color and to optimize text legibility. */
+
+
+.img-center {
+    margin: 0 auto;
+}
+
+
+
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-body > .container {
+.ng-container {
     width: 80%;
     padding: 60px 15px 0;
 }

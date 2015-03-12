@@ -1,4 +1,4 @@
-
+<div class="container ng-container">
     <div class="row" style="min-height:100%;height:100%">
 
         <div class="col-lg-4">
@@ -28,10 +28,10 @@
             <div class="panel panel-default " style="min-height:100%;height:100%">
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Main Map</h4>
-                    <div class="pull-right">
-                        <button class="btn btn-default btn-sm">Flu Data</button>
-                        <button class="btn btn-default btn-sm">COPD Data</button>
-                        <button class="btn btn-default btn-sm">Asmath</button>
+                    <div class="btn-group pull-right">
+                        <button type="button" data-value="1" class="btn btn-default">COPD</button>
+                        <button type="button" data-value="0" class="btn btn-default">Asthma</button>
+                        <button type="button" data-value="0" class="btn btn-default">Flu</button>
                     </div>
                 </div>
                 <div class="panel-body" id="main">
@@ -40,7 +40,17 @@
                             <ccg-map id="ccgMap" style="width: 100%" class="img-rounded img-thumbnail" callback-fn="alert(id,desc)"></ccg-map>
                         </div>
                         <div class="col-sm-3" style="padding-left:10px;">
-                            <div class="img-rounded" style="background-color: #274a8e; color:#FFF;margin-bottom: 5px; padding: 10px;" id="CCGData"></div>
+                            <form novalidate class="form-group well">
+                                <div class="form-group">
+                                    <select class="form-control" ng-init="ccgSelected = ccgSelected || ccg[0].CCG" ng-model="ccgSelected"
+                                            ng-options="x as x.CCG for x in ccg">
+                                    </select>
+                                    <br>
+                                    <button style="width: 100%" type="submit" ng-click="update()" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+
+                            <div class="img-rounded" style="background-color: #274a8e; color:#FFF;margin-bottom: 5px; padding: 10px;" id="CCGData">CCG Name</div>
                             <div class="panel panel-default" style="background-color:#286090; color: #ffffff;padding:0px;">
                                 <table class="table table-bordered">
                                     <tr>
@@ -66,3 +76,4 @@
             </div>
         </div>
     </div>
+</div>

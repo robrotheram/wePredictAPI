@@ -31,6 +31,15 @@
 
     <!-- main source file -->
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers/homecontroller.js"></script>
+    <script type="text/javascript" src="js/controllers/aboutcontroller.js"></script>
+    <script type="text/javascript" src="js/controllers/ccgcontroller.js"></script>
+    <script type="text/javascript" src="js/controllers/wipcontroller.js"></script>
+    <script type="text/javascript" src="js/directives/ccgmap.js"></script>
+    <script type="text/javascript" src="js/directives/ccgpoly.js"></script>
+    <script type="text/javascript" src="js/services/wepredictapi.js"></script>
+
+
 
 </head>
 <body ng-app="scotchApp" ng-controller="mainController">
@@ -51,14 +60,13 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#/">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">WIP</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container">
+
 <div ng-view></div>
-</div>
 <footer class="footer">
     <div class="container">
         <p class="text-muted">Project written as part of MENG Dissertation Robert Fletcher Jonathan Phillips Nicolas Rees</p>
