@@ -4,6 +4,8 @@
 
 /* Sticky footer styles
 -------------------------------------------------- */
+/* Sticky footer styles
+-------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -22,18 +24,30 @@ body {
 }
 
 
+.row.equal [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.row.equal{
+    overflow: hidden;
+}
+
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
 body > .container {
-    width: 90%;
+    width: 80%;
     padding: 60px 15px 0;
 }
 .container .text-muted {
     margin: 20px 0;
 }
 
+ccg-map{
+    width: 100%;
+}
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;

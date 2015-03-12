@@ -2,7 +2,7 @@
  * Created by robert on 09/03/15.
  */
 
-var scotchApp = angular.module('scotchApp', ['ngRoute','angularChart']);
+var scotchApp = angular.module('scotchApp', ['ngRoute','angularChart','chart.js']);
 
 scotchApp.factory('myService', function() {
     var savedData = {}
@@ -95,18 +95,22 @@ scotchApp.directive( 'ccgMap', ['$location',
                 callbackFn:'&'
             },
             link: function (scope, element) {
+
                 d3.select(window).on("resize", throttle);
                 var scaleValue = 0;
                 var zoom = d3.behavior.zoom()
                     .scaleExtent([1, 9])
                     .on("zoom", move);
-                var width = element.parent()[0].offsetWidth;
+                var width = $('#ccgMap').width();
                 var projection;
-                var height = width / 2;
+                var height = (width )*1;
                 var topo,projection,path,svg,g;
                 var scaleValue = 4000;
-                if($(document).width()<2000){
-                    var scaleValue = 2800;
+                if($(document).width()>1500){
+                    var scaleValue = 5500;
+                }
+                if($(document).width()<1500){
+                    var scaleValue = 3000;
                 }
                 if($(document).width()<1200){
                     var scaleValue = 1900;
@@ -165,7 +169,7 @@ scotchApp.directive( 'ccgMap', ['$location',
                             .on("mouseout", function (d, i) {
                                 $("#CCGData").hide();
                             })
-                            .on("click", function (d, i) {
+                            .on("dblclick", function (d, i) {
 
                                 scope.callbackFn({id: d.properties.name, desc: d.properties.description});
                             });
@@ -191,7 +195,7 @@ scotchApp.directive( 'ccgMap', ['$location',
 
                 function redraw() {
                     width =  element[0].width();
-                    height = width / 2;
+                    height = (width / 4)*3;
                     d3.select('svg').remove();
                     setup(width,height);
                     draw(topo);
@@ -205,8 +209,6 @@ scotchApp.directive( 'ccgMap', ['$location',
                     zscale = s;
                     var h = height/4;
 
-                    t[0] = Math.min(width / 2 * (s - 1), Math.max(width / 2 * (1 - s), t[0]));
-                    t[1] = Math.min(height / 2 * (s - 1) + h * s, Math.max(height / 2 * (1 - s) - h * s, t[1]));
 
                     zoom.translate(t);
 
@@ -338,99 +340,24 @@ scotchApp.directive( 'ccgPoly', ['$location',
 scotchApp.controller('mainController',['myService','$scope','$route', '$window', '$location','$timeout',
     function(myService,$scope,$route, $window, $location,$timeout) {
 
-        $scope.dataset = [
-            {
-                "day": "2013-01-08T00:00:00",
-                "sales": 300,
-                "income": 200,
-                "customers": 30,
-                "units": 130,
-                "dayString": "Montag"
-            },
-            {
-                "day": "2013-01-03T00:00:00",
-                "sales": 200,
-                "income": 130,
-                "customers": 20,
-                "units": 120,
-                "dayString": "Dienstag"
-            },
-            {
-                "day": "2013-01-04T00:00:00",
-                "sales": 160,
-                "income": 90,
-                "customers": 50,
-                "units": 150,
-                "dayString": "Mittwoch"
-            },
-            {
-                "day": "2013-01-05T00:00:00",
-                "sales": 400,
-                "income": 240,
-                "customers": 40,
-                "units": 140,
-                "dayString": "Donnerstag"
-            },
-            {
-                "day": "2013-01-06T00:00:00",
-                "sales": 250,
-                "income": 130,
-                "customers": 60,
-                "units": 160,
-                "dayString": "Freitag"
-            },
-            {
-                "day": "2013-01-07T00:00:00",
-                "sales": 250,
-                "income": 220,
-                "customers": 50,
-                "units": 150,
-                "dayString": "Samstag"
-            }
+        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+        $scope.series = ['Series A', 'Series B'];
+        $scope.data = [
+            [65, 59, 80, 81, 56, 55, 40],
+            [28, 48, 40, 19, 86, 27, 90]
         ];
-
-        $scope.schema = {
-            day: {
-                type: 'datetime',
-                format: '%Y-%m-%d_%H:%M:%S',
-                name: 'Date'
-            }
+        $scope.onClick = function (points, evt) {
+            console.log(points, evt);
         };
-
-        $scope.options = {
-            "rows": [
-                {
-                    "key": "customers",
-                    "type": "area",
-                    "axis": "y",
-                    "color": "#ff7f0e"
-                }
-            ],
-            "xAxis": {
-                "selector": false
-            },
-            "selection": {
-                "selected": []
-            },
-            "type": "line",
-            "zoom": {}
-        }
-
-        $timeout($scope.init);
-        // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
         $scope.alert = function(id,desc){
-
-        //this will mark the URL change
-
-        var obj = {name:id,dec:desc};
-        myService.set(obj);
-        console.log(id+" | "+desc);
-        $location.path('ccg'); //use $location.path(url).replace() if you want to replace the location instead
-
-        $scope = $scope || angular.element(document).scope();
-        $scope.$apply();
-    };
+            var obj = {name:id,dec:desc};
+            myService.set(obj);
+            console.log(id+" | "+desc);
+            $location.path('ccg');
+            $scope = $scope || angular.element(document).scope();
+            $scope.$apply();
+        };
 
 
 }]);
