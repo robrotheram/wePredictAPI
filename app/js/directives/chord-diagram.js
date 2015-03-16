@@ -23,8 +23,8 @@ wepredictApp.directive( 'chordiagram', ['$location',
                     .sortSubgroups(d3.descending)
                     .matrix(scope.ccgid);
 
-                var width = element.parent()[0].offsetWidth;
-                    height = width / 2;
+                var width = element.parent()[0].offsetWidth; //<-- changed from fixed width.
+                    height = width * 0.52;  //<--changed from fixed width.
                     innerRadius = Math.min(width, height) * .41,
                     outerRadius = innerRadius * 1.1;
 
@@ -32,7 +32,7 @@ wepredictApp.directive( 'chordiagram', ['$location',
                     .domain(d3.range(4))
                     .range(["#000000", "#FFDD89", "#957244", "#F26223"]);
 
-                var svg = d3.select(element[0]).append("svg")
+                var svg = d3.select(element[0]).append("svg") // <-- Line changed from d3.select("body")
                     .attr("width", width)
                     .attr("height", height)
                     .append("g")
