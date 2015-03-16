@@ -85,7 +85,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                         .on("mouseout", function (d, i) {
                             // $("#CCGData").hide();
                         })
-                        .on("click", function (d, i) {
+                        .on("dblclick", function (d, i) {
 
                             scope.callbackFn({id: d.properties.name, desc: d.properties.description});
                         });
