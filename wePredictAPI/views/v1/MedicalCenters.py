@@ -23,6 +23,7 @@ def getCCG():
         js_data.append(objjst)
     return Response(simplejson.dumps(js_data), mimetype='application/json')
 
+
 @app.route('/v1/getpractice')
 def getPractice():
     prac = request.args.get('practice')
