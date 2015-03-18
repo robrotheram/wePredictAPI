@@ -22,3 +22,21 @@ def getCCG():
         objjst = {"CCG": obj[0]}
         js_data.append(objjst)
     return Response(simplejson.dumps(js_data), mimetype='application/json')
+
+@app.route('/v1/getpractice')
+def getPractice():
+    prac = request.args.get('practice')
+    if prac is None:
+        data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
+        js_data = []
+        for obj in data:
+            objjst = {"Practice": obj[0]}
+            js_data.append(objjst)
+        return Response(simplejson.dumps(js_data), mimetype='application/json')
+    else:
+        data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = "+prac)
+        js_data = []
+        for obj in data:
+            objjst = {"Practice": obj[0]}
+            js_data.append(objjst)
+        return Response(simplejson.dumps(js_data), mimetype='application/json')
