@@ -3,8 +3,8 @@
  */
 
 // create the controller and inject Angular's $scope
-wepredictApp.controller('mainController',['myService','$scope','$route', '$window', '$location','dataFactory',
-    function(myService,$scope,$route, $window, $location,dataFactory) {
+wepredictApp.controller('mainController',['myService','$scope','$route', '$window', '$location','dataFactory','$timeout',
+    function(myService,$scope,$route, $window, $location,dataFactory,$timeout) {
 
         $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
         $scope.series = ['Series A', 'Series B'];
@@ -17,23 +17,27 @@ wepredictApp.controller('mainController',['myService','$scope','$route', '$windo
         };
         $scope.message = 'Everyone come and see how good I look!';
         $scope.alert = function(id,desc){
-            var obj = {name:id,dec:desc};
-            myService.set(obj);
-            console.log(id+" | "+desc);
-            $location.path('ccg');
-            $scope = $scope || angular.element(document).scope();
-            $scope.$apply();
+            $timeout(function() {
+                var obj = {name:id,dec:desc};
+                myService.set(obj);
+                console.log(id+" | "+desc);
+                $location.path('ccg');
+                $scope = $scope || angular.element(document).scope();
+                $scope.$apply();
+            });
         };
 
 
         $scope.ccgSelected = {};
         $scope.update = function() {
 
-            var obj = {dec:$scope.ccgSelected.CCG};
-            myService.set(obj);
-            $location.path('ccg');
-            $scope = $scope || angular.element(document).scope();
-            $scope.$apply();
+            $timeout(function() {
+                var obj = {dec: $scope.ccgSelected.CCG};
+                myService.set(obj);
+                $location.path('ccg');
+                $scope = $scope || angular.element(document).scope();
+                $scope.$apply();
+            });
         };
 
         dataFactory.getCCG()

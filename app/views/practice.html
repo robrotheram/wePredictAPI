@@ -6,7 +6,7 @@
                <col width="90%"><col width="10%">
                <tr>
                    <td>
-                       <h1>{{ccgname}}</h1>
+                       <h1>{{practice}}</h1>
                    </td>
                    <td>
                        <ccg-poly ccgid="ccgname"></ccg-poly>
@@ -20,20 +20,6 @@
 
     <div class="row">
         <div class="col-lg-3">
-
-            <div class="panel panel-default ">
-                <div class="panel-heading clearfix"style="background-color: #286090">
-                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Select a practice</h4>
-                </div>
-                <div class="panel-body" style="width:100%;">
-                    <select class="form-control" ng-init="practiceSelected = practiceSelected || practice[0].Practice" ng-model="practiceSelected"
-                            ng-options="x as x.Practice for x in practice">
-                    </select>
-                    <br>
-                    <button style="width: 100%" type="submit" ng-click="update()" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>

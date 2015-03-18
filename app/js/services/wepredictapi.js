@@ -13,5 +13,12 @@ wepredictApp.factory('dataFactory', ['$http', function($http) {
     dataFactory.getCCG = function () {
         return $http.get(urlBase+'/getccg');
     };
+
+    dataFactory.getPracticeList = function (practice) {
+        return $http.get(urlBase+'/getpractice?practice='+encodeURIComponent(practice));
+    };
+
     return dataFactory;
+
+
 }]);

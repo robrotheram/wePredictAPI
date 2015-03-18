@@ -22,9 +22,7 @@ wepredictApp.factory('myService', function() {
 // configure our routes
 wepredictApp.config(function($routeProvider,$locationProvider) {
 
-
     $routeProvider
-
         // route for the home page
         .when('/', {
             templateUrl : 'views/home.html',
@@ -46,6 +44,10 @@ wepredictApp.config(function($routeProvider,$locationProvider) {
         .when('/ccg', {
             templateUrl : 'views/ccgName.html',
             controller  : 'ccgController'
+        })
+        .when('/practice', {
+            templateUrl : 'views/practice.html',
+            controller  : 'practiceController'
         });
 });
 

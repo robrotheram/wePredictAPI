@@ -37,6 +37,12 @@ wepredictApp.directive( 'ccgMap', ['$location',
                 // $("#CCGData").hide();
                 setup(width,height);
 
+                var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
+
+
+                //              var offsetL = document.getElementById('container').offsetLeft+20;
+//                var offsetT = document.getElementById('container').offsetTop+10;
+
                 d3.json("js/ccg.json", function(error, world) {
 
                     var countries = topojson.feature(world, world.objects.CCG).features;
@@ -81,9 +87,11 @@ wepredictApp.directive( 'ccgMap', ['$location',
                             });
                             $("#CCGData").show();
                             $("#CCGData").html(d.properties.description);
+                            tooltip.classed("hidden", true);
                         })
                         .on("mouseout", function (d, i) {
                             // $("#CCGData").hide();
+                            tooltip.classed("hidden", true);
                         })
                         .on("dblclick", function (d, i) {
 
@@ -135,7 +143,7 @@ wepredictApp.directive( 'ccgMap', ['$location',
                     //adjust the country hover stroke width based on zoom level
                     d3.selectAll(".country").style("stroke-width", 1.5 / s);
 
-                    console.log(t);
+                    //console.log(t);
 
                 }
 
