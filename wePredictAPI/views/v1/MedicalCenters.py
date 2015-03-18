@@ -4,6 +4,7 @@ from flask import request
 from wePredictAPI.app import app
 from wePredictAPI.app  import databaseConnection
 from flask import Response
+import urllib
 import simplejson
 
 @app.route('/v1/getadress')
@@ -35,6 +36,7 @@ def getPractice():
             js_data.append(objjst)
         return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
+        prac = urllib.unquote(prac)
         data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = "+prac)
         js_data = []
         for obj in data:
