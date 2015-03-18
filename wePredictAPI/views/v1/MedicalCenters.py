@@ -37,6 +37,7 @@ def getPractice():
         return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
         prac = urllib.unquote(prac)
+        print prac
         data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = "+prac)
         js_data = []
         for obj in data:
