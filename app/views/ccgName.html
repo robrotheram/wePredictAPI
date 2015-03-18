@@ -23,6 +23,19 @@
 
             <div class="panel panel-default ">
                 <div class="panel-heading clearfix"style="background-color: #286090">
+                    <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Select a practice</h4>
+                </div>
+                <div class="panel-body" style="width:100%;">
+                    <select class="form-control" ng-init="ccgSelected = ccgSelected || ccg[0].CCG" ng-model="ccgSelected"
+                            ng-options="x as x.CCG for x in ccg">
+                    </select>
+                    <br>
+                    <button style="width: 100%" type="submit" ng-click="update()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+            <div class="panel panel-default ">
+                <div class="panel-heading clearfix"style="background-color: #286090">
                     <h4 class="panel-title pull-left" style="color: #ffffff; padding-top: 7.5px;">Over View Graph 2</h4>
                 </div>
                 <div class="panel-body" style="width:100%;">
