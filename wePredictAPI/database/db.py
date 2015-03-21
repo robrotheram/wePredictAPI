@@ -8,17 +8,10 @@ connection = PySQLPool.getNewConnection(username=username, password=password, ho
 class DB(object):
 
     def __init__(self):
-        #g.cnx_pool = pymysql.connector.pooling.MySQLConnectionPool(pool_name="name",
-                                                             # pool_size=10,
-                                                             # autocommit=True,
-                                                             # user=username,
-                                                             # password=password,
-                                                             # host=hostname,
-                                                             # database=database)
+        """
 
 
-    def getConnection(self):
-        #return self.pool.connection()
+        """
 
     def getResult(self,querry):
 
