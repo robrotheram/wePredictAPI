@@ -18,8 +18,13 @@ def getAdress():
 @app.route('/v1/getccg')
 def getCCG():
     data = databaseConnection.getResult("SELECT CCG FROM CCG GROUP BY CCG")
+    print data
+    js_data = []
+    for obj in data:
+        objjst = {"CCG": obj['CCG']}
+        js_data.append(objjst)
 
-    return Response(simplejson.dumps(data), mimetype='application/json')
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
 
 
 @app.route('/v1/getpractice')
