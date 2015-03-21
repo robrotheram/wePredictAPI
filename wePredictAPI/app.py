@@ -7,7 +7,9 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
-g.db = DB()
+@app.before_request
+def before_request():
+    g.db = DB()
 
 
 import wePredictAPI.views.v1
