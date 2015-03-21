@@ -1,6 +1,5 @@
 from flask import jsonify , g
 from flask import request
-
 from wePredictAPI.app import app
 from flask import Response
 import urllib
