@@ -1,36 +1,34 @@
 __author__ = 'robert'
-from flask import jsonify
+from flask import jsonify , g
 from flask import request
 from flask import Response
 import simplejson
 
 from wePredictAPI.app import app
-from wePredictAPI.app import databaseConnection
-
 
 @app.route('/v1/getcopd')
 def getcopd():
     limit = request.args.get('limit')
     if limit is None:
-        return jsonify(data= databaseConnection.getResult("SELECT * from COPD"))
+        return jsonify(data= g.db.getResult("SELECT * from COPD"))
     else:
-        return jsonify(data=databaseConnection.getResult("SELECT * from COPD LIMIT " + limit))
+        return jsonify(data=g.db.getResult("SELECT * from COPD LIMIT " + limit))
 
 
 @app.route('/v1/getcopdaverage')
 def getcopdaverage():
-    data = databaseConnection.getResult("SELECT Avg(Value_09), Avg(Value_10), Avg(Value_11), Avg(Value_12), Avg(Value_13) FROM COPD")
+    data = g.db.getResult("SELECT Avg(Value_09)as v09, Avg(Value_10)as v10, Avg(Value_11)as v11, Avg(Value_12)as v12, Avg(Value_13)as v13 FROM COPD")
     js_data = []
     for obj in data:
-        objjst = {"y": "2009", "value_y": obj[0]}
+        objjst = {"y": "2009", "value_y": obj['v09']}
         js_data.append(objjst)
-        objjst = {"y": "2010", "value_y": obj[1]}
+        objjst = {"y": "2010", "value_y": obj['v10']}
         js_data.append(objjst)
-        objjst = {"y": "2011", "value_y": obj[2]}
+        objjst = {"y": "2011", "value_y": obj['v11']}
         js_data.append(objjst)
-        objjst = {"y": "2012", "value_y": obj[3]}
+        objjst = {"y": "2012", "value_y": obj['v12']}
         js_data.append(objjst)
-        objjst = {"y": "2013", "value_y": obj[4]}
+        objjst = {"y": "2013", "value_y": obj['v13']}
         js_data.append(objjst)
 
 
@@ -39,49 +37,22 @@ def getcopdaverage():
 
 @app.route('/v1/get_copd_ASTHMA_average')
 def getcopdasthmaaverage():
-    data = databaseConnection.getResult("SELECT Avg(COPD.Value_09), Avg(COPD.Value_10), Avg(COPD.Value_11), Avg(COPD.Value_12), "
-                   "Avg(COPD.Value_13), Avg(ASTHMA_QOF.Value_09), Avg(ASTHMA_QOF.Value_10), Avg(ASTHMA_QOF.Value_11), "
-                   "Avg(ASTHMA_QOF.Value_12), Avg(ASTHMA_QOF.Value_13) FROM COPD "
+    data = g.db.getResult("SELECT Avg(COPD.Value_09) as v09, Avg(COPD.Value_10)as v10, Avg(COPD.Value_11)as v11, Avg(COPD.Value_12) as v12, "
+                   "Avg(COPD.Value_13) as v13, Avg(ASTHMA_QOF.Value_09) as Q09, Avg(ASTHMA_QOF.Value_10) as Q10, Avg(ASTHMA_QOF.Value_11)as Q11, "
+                   "Avg(ASTHMA_QOF.Value_12)as Q12, Avg(ASTHMA_QOF.Value_13) as Q13 FROM COPD "
                    "Join ASTHMA_QOF  on COPD.Practice_Code = ASTHMA_QOF.Practice_Code")
     js_data = []
     for obj in data:
-        objjst = {"y": "2009", "value_COPD": obj[0], "value_ASMTHA": obj[5]}
+        objjst = {"y": "2009", "value_COPD": obj['v09'], "value_ASMTHA": obj['Q09']}
         js_data.append(objjst)
-        objjst = {"y": "2010", "value_COPD": obj[1], "value_ASMTHA": obj[6]}
+        objjst = {"y": "2010", "value_COPD": obj['v10'], "value_ASMTHA": obj['Q10']}
         js_data.append(objjst)
-        objjst = {"y": "2011", "value_COPD": obj[2], "value_ASMTHA": obj[7]}
+        objjst = {"y": "2011", "value_COPD": obj['v11'], "value_ASMTHA": obj['Q11']}
         js_data.append(objjst)
-        objjst = {"y": "2012", "value_COPD": obj[3], "value_ASMTHA": obj[8]}
+        objjst = {"y": "2012", "value_COPD": obj['v12'], "value_ASMTHA": obj['Q12']}
         js_data.append(objjst)
-        objjst = {"y": "2013", "value_COPD": obj[4], "value_ASMTHA": obj[9]}
-        js_data.append(objjst)
-
-    return Response(simplejson.dumps(js_data), mimetype='application/json')
-
-
-@app.route('/v1/testGet')
-def testGet():
-    cOPDData = databaseConnection.getResult("SELECT CCG, COPD.Value_12 FROM wePredict.CCG  join wePredict.COPD on COPD.Practice_Code = CCG.Practice_Code group by CCG")
-    smokingData = databaseConnection.getResult("SELECT CCG, SMOKING.Value_12 FROM wePredict.CCG  join wePredict.SMOKING on SMOKING.Practice_Code = CCG.Practice_Code group by CCG")
-    fluData = databaseConnection.getResult("SELECT CCG, FLU.Value_12 FROM wePredict.CCG  join wePredict.FLU on FLU.Practice_Code = CCG.Practice_Code group by CCG")
-
-    js_data = []
-    for x in range(0, len(cOPDData)):
-        objjst = {"y": "2009", "value_CCG": cOPDData[x][0], "value_COPD": cOPDData[x][1], "value_SMOKING": smokingData[x][1], "value_FLU": fluData[x][1]}
+        objjst = {"y": "2013", "value_COPD": obj['v13'], "value_ASMTHA": obj['Q13']}
         js_data.append(objjst)
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
-
-@app.route('/v1/testGetTWO')
-def testGetTWO():
-    cOPDData = databaseConnection.getResult("SELECT CCG, COPD.Value_12,FLU.Value_12, SMOKING.Value_12 FROM wePredict.CCG join wePredict.COPD on COPD.Practice_Code = CCG.Practice_Code join wePredict.FLU on FLU.Practice_Code = CCG.Practice_Code join wePredict.SMOKING on SMOKING.Practice_Code = CCG.Practice_Code  group by CCG")
-
-    js_data = []
-    for x in range(0, len(cOPDData)):
-        objjst = {"y": "2009", "value_CCG": cOPDData[x][0], "value_COPD": cOPDData[x][1], "value_SMOKING": cOPDData[x][1], "value_FLU": cOPDData[x][1]}
-        js_data.append(objjst)
-
-    return Response(simplejson.dumps(js_data), mimetype='application/json')
-
-
 
