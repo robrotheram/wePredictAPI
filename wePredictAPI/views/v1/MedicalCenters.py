@@ -31,7 +31,11 @@ def getPractice():
     prac = request.args.get('practice')
     if prac is None:
         data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
-        return Response(simplejson.dumps(data), mimetype='application/json')
+        js_data = []
+        for obj in data:
+            objjst = {"Practice": obj['Practice_Name']}
+            js_data.append(objjst)
+        return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
         prac = urllib.unquote(prac)
         qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
