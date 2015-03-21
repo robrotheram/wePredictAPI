@@ -18,7 +18,7 @@ class DB(object):
 
 
     def getConnection(self):
-        return self.pool.connection()
+        #return self.pool.connection()
 
     def getResult(self,querry):
 
