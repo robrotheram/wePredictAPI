@@ -21,7 +21,7 @@ def getCCG():
     print data
     js_data = []
     for obj in data:
-        objjst = {"CCG": obj['CCG']}
+        objjst = {"CCG": obj[0]}
         js_data.append(objjst)
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
