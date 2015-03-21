@@ -25,7 +25,7 @@ def getCCG():
 
 
     for row in data.record:
-        objjst = {"CCG": row['CCG']}
+        objjst = {"CCG": row[0]}
         js_data.append(objjst)
 
     return Response(simplejson.dumps(js_data), mimetype='application/json')
