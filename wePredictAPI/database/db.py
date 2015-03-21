@@ -15,8 +15,7 @@ class DB(object):
                 host = hostname,
                 user = username,
                 passwd= password,
-                charset = "utf8",
-                use_unicode = True)
+                charset = "utf8")
 
 
     def getConnection(self):
