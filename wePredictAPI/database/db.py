@@ -1,14 +1,13 @@
 __author__ = 'robertfletcher'
 from flask import g
 from wePredictAPI.settings import *
-import MySQLdb
-import mysql.connector
+import pymysql
 
 
 class DB(object):
 
     def __init__(self):
-        g.cnx_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="name",
+        g.cnx_pool = pymysql.connector.pooling.MySQLConnectionPool(pool_name="name",
                                                              pool_size=10,
                                                              autocommit=True,
                                                              user=username,

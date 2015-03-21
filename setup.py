@@ -7,5 +7,5 @@ setup(name='YourAppName',
       author='Your Name',
       author_email='example@example.com',
       url='https://www.python.org/community/sigs/current/distutils-sig',
-      install_requires=['Flask>=0.7.2','flask-cors', 'MarkupSafe','MySQL-python','simplejson','oursql', 'DBUtils>=1.1'],
+      install_requires=['Flask>=0.7.2','flask-cors','PyMySQL', 'MarkupSafe','MySQL-python','simplejson','oursql', 'DBUtils>=1.1'],
      )
