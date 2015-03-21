@@ -16,7 +16,11 @@ class DB(object):
     def getResult(self,querry):
 
         query = PySQLPool.getNewQuery(connection)
-        return query.Query(querry);
+
+        data =[]
+        for row in query.record:
+            data.append(row)
+        return data
 
 
         #conn = g.cnx_pool.get_connection()
