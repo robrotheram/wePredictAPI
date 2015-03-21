@@ -19,11 +19,11 @@ def getAdress():
 def getCCG():
     jdata = databaseConnection.getResult("SELECT CCG FROM CCG GROUP BY CCG")
     js_data = []
-    #for obj in data:
-        #objjst = {"CCG": obj[0]}
-        #js_data.append(objjst)
+    for obj in data:
+        objjst = {"CCG": obj[0]}
+        js_data.append(objjst)
 
-    return jsonify(data = jdata) #Response(simplejson.dumps(js_data), mimetype='application/json')
+    return Response(simplejson.dumps(js_data), mimetype='application/json')
 
 
 @app.route('/v1/getpractice')
