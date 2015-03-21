@@ -29,7 +29,7 @@ def getCCG():
 def getPractice():
     prac = request.args.get('practice')
     if prac is None:
-        data = g.databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
+        data = g.db.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
         js_data = []
         for obj in data:
             objjst = {"Practice": obj['Practice_Name']}
