@@ -9,13 +9,13 @@ import simplejson
 def getAdress():
     limit = request.args.get('limit')
     if limit is None:
-        return jsonify(data=databaseConnection.getResult("SELECT * from ADRESS LIMIT "))
+        return jsonify(data=g.db.getResult("SELECT * from ADRESS LIMIT "))
     else:
-        return jsonify(data=databaseConnection.getResult("SELECT * from ADRESS LIMIT " + limit))
+        return jsonify(data=g.db.getResult("SELECT * from ADRESS LIMIT " + limit))
 
 @app.route('/v1/getccg')
 def getCCG():
-    data = databaseConnection.getResult("SELECT CCG FROM CCG GROUP BY CCG")
+    data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
     js_data = []
     for obj in data:
         objjst = {"CCG": obj['CCG']}
@@ -37,7 +37,7 @@ def getPractice():
     else:
         prac = urllib.unquote(prac)
         qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
-        data = databaseConnection.getResult(qurry)
+        data = g.db.getResult(qurry)
         js_data = []
         for obj in data:
             objjst = {"Practice": obj['Practice_Name']}

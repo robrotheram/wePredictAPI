@@ -1,13 +1,10 @@
-from flask import jsonify
-from flask import request
-
+from flask import jsonify,g,request
 from wePredictAPI.app  import app
-from wePredictAPI.app  import databaseConnection
 
 @app.route('/v1/getasmtha')
 def getAsmtha():
     limit = request.args.get('limit')
     if limit is None:
-        return jsonify(data=databaseConnection.getResult("SELECT * from ASTHMA_QOF"))
+        return jsonify(data=g.db.getResult("SELECT * from ASTHMA_QOF"))
     else:
-        return jsonify(data=databaseConnection.getResult(("SELECT * from ASTHMA_QOF LIMIT " + limit)))
+        return jsonify(data=g.db.getResult(("SELECT * from ASTHMA_QOF LIMIT " + limit)))
