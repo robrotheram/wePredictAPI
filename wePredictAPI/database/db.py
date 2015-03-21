@@ -3,7 +3,7 @@ from flask import g
 from wePredictAPI.settings import *
 import PySQLPool
 
-connection = PySQLPool.getNewConnection(username='root', password='123456', host='localhost', db='mydb')
+connection = PySQLPool.getNewConnection(username=username, password=password, host=hostname, db=database)
 
 class DB(object):
 
