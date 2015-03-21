@@ -8,13 +8,13 @@ connection = PySQLPool.getNewConnection(username='root', password='123456', host
 class DB(object):
 
     def __init__(self):
-        g.cnx_pool = pymysql.connector.pooling.MySQLConnectionPool(pool_name="name",
-                                                             pool_size=10,
-                                                             autocommit=True,
-                                                             user=username,
-                                                             password=password,
-                                                             host=hostname,
-                                                             database=database)
+        #g.cnx_pool = pymysql.connector.pooling.MySQLConnectionPool(pool_name="name",
+                                                             # pool_size=10,
+                                                             # autocommit=True,
+                                                             # user=username,
+                                                             # password=password,
+                                                             # host=hostname,
+                                                             # database=database)
 
 
     def getConnection(self):
