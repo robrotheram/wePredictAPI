@@ -1,8 +1,7 @@
-from flask import jsonify
+from flask import jsonify , g
 from flask import request
 
 from wePredictAPI.app import app
-from wePredictAPI.app  import databaseConnection
 from flask import Response
 import urllib
 import simplejson
@@ -30,7 +29,7 @@ def getCCG():
 def getPractice():
     prac = request.args.get('practice')
     if prac is None:
-        data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
+        data = g.databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
         js_data = []
         for obj in data:
             objjst = {"Practice": obj['Practice_Name']}
