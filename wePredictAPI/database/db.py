@@ -1,8 +1,9 @@
 __author__ = 'robertfletcher'
 from flask import g
 from wePredictAPI.settings import *
-import pymysql
+import PySQLPool
 
+connection = PySQLPool.getNewConnection(username='root', password='123456', host='localhost', db='mydb')
 
 class DB(object):
 
@@ -20,9 +21,15 @@ class DB(object):
         return self.pool.connection()
 
     def getResult(self,querry):
-        conn = g.cnx_pool.get_connection()
-        cursor = conn.cursor()
-        cursor.execute(querry)
+
+        query = PySQLPool.getNewQuery(connection)
+        query.QueryOne(querry)
+        return query
+
+
+        #conn = g.cnx_pool.get_connection()
+        #cursor = conn.cursor()
+        #cursor.execute(querry)
         #db.close()
-        return cursor.fetchall()
+        #return cursor.fetchall()
 
