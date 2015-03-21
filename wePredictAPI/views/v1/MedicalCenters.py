@@ -18,7 +18,6 @@ def getAdress():
 @app.route('/v1/getccg')
 def getCCG():
     data = databaseConnection.getResult("SELECT CCG FROM CCG GROUP BY CCG")
-    print data
     js_data = []
     for obj in data:
         objjst = {"CCG": obj['CCG']}
@@ -34,7 +33,7 @@ def getPractice():
         data = databaseConnection.getResult("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code")
         js_data = []
         for obj in data:
-            objjst = {"Practice": obj[0]}
+            objjst = {"Practice": obj['Practice_Name']}
             js_data.append(objjst)
         return Response(simplejson.dumps(js_data), mimetype='application/json')
     else:
@@ -46,6 +45,6 @@ def getPractice():
         data = databaseConnection.getResult(qurry)
         js_data = []
         for obj in data:
-            objjst = {"Practice": obj[0]}
+            objjst = {"Practice": obj['Practice_Name']}
             js_data.append(objjst)
         return Response(simplejson.dumps(js_data), mimetype='application/json')
