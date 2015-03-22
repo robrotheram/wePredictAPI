@@ -17,9 +17,7 @@ class DB(object):
 
         query = PySQLPool.getNewQuery(connection)
         query.Query(querry)
-        data =[]
-        for row in query.record:
-            data.append(row)
+        data = query.record
         return data
 
 
