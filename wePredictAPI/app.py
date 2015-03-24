@@ -22,4 +22,4 @@ import wePredictAPI.views.v1.smoking
 
 if __name__ == '__main__':
     app.run()
-    g.db = DB()
+    app.db = DB()
