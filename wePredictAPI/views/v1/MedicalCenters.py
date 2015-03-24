@@ -15,7 +15,7 @@ def getAdress():
 
 @app.route('/v1/getccg')
 def getCCG():
-    data = app.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
+    data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
     js_data = []
     for obj in data:
         objjst = {"CCG": obj['CCG']}
