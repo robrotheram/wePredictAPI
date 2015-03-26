@@ -36,7 +36,7 @@ class Ccg():
       # Parameters can be automatically extracted from URLs (e.g. <string:id>)
       # but you could also override them here, or add other parameters.
       )
-  def get(self, ccg_name):
+  def get(self):
     # This goes into the summary
     """Get a todo task
     This will be added to the <strong>Implementation Notes</strong>.
