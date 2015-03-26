@@ -25,35 +25,11 @@ api = swagger.docs(Api(app), apiVersion='0.1',
                    description='WePredict API')
 ###################################
 
-
-
-
-TODOS = {
-    'todo1': {'task': 'build an API'},
-    'todo2': {'task': '?????'},
-    'todo3': {'task': 'profit!'},
-}
-
-
-def abort_if_todo_doesnt_exist(todo_id):
-  if todo_id not in TODOS:
-    abort(404, message="Todo {} doesn't exist".format(todo_id))
-
 parser = reqparse.RequestParser()
 parser.add_argument('task', type=str)
 
-
-@swagger.model
-class TodoItem:
-  """This is an example of a model class that has parameters in its constructor
-  and the fields in the swagger spec are derived from the parameters
-  to __init__.
-  In this case we would have args, arg2 as required parameters and arg3 as
-  optional parameter."""
-  def __init__(self, arg1, arg2, arg3='123'):
-    pass
-
-class Todo(Resource):
+class Ccg(Resource):
+  "My TODO API"
   "My TODO API"
   @swagger.operation(
       notes='get a todo item by ID',
@@ -68,17 +44,9 @@ class Todo(Resource):
             "allowMultiple": False,
             "dataType": 'string',
             "paramType": "path"
-          },
-          {
-            "name": "a_bool",
-            "description": "The ID of the TODO item",
-            "required": True,
-            "allowMultiple": False,
-            "dataType": 'boolean',
-            "paramType": "path"
           }
       ])
-  def get(self, todo_id):
+  def get(self, ccg_name):
     # This goes into the summary
     """Get a todo task
     This will be added to the <strong>Implementation Notes</strong>.
@@ -91,37 +59,16 @@ class Todo(Resource):
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.
     """
-    abort_if_todo_doesnt_exist(todo_id)
-    return TODOS[todo_id], 200, {'Access-Control-Allow-Origin': '*'}
+    data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
+    js_data = []
+    for obj in data:
+        objjst = {"CCG": obj['CCG']}
+        js_data.append(objjst)
 
-  @swagger.operation(
-      notes='delete a todo item by ID',
-  )
-  def delete(self, todo_id):
-    abort_if_todo_doesnt_exist(todo_id)
-    del TODOS[todo_id]
-    return '', 204, {'Access-Control-Allow-Origin': '*'}
-
-  @swagger.operation(
-      notes='edit a todo item by ID',
-  )
-  def put(self, todo_id):
-    args = parser.parse_args()
-    task = {'task': args['task']}
-    TODOS[todo_id] = task
-    return task, 201, {'Access-Control-Allow-Origin': '*'}
-
-  def options (self, **args):
-    # since this method is not decorated with @swagger.operation it does not
-    # get added to the swagger docs
-    return {'Allow' : 'GET,PUT,POST,DELETE' }, 200, \
-    { 'Access-Control-Allow-Origin': '*', \
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE', \
-      'Access-Control-Allow-Headers': 'Content-Type' }
+    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
-
-api.add_resource(Todo, '/todos/<string:todo_id>')
+api.add_resource(Ccg, '/ccg/<string:ccg_name>')
 
 @app.route('/docs')
 def docs():
@@ -144,5 +91,4 @@ import wePredictAPI.views.v1.Pollution
 import wePredictAPI.views.v1.smoking
 
 if __name__ == '__main__':
-    TodoItem(1, 2, '3')
     app.run(debug=True)
