@@ -7,6 +7,21 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
+
+
+
+###################################
+# This is important:
+api = swagger.docs(Api(app), apiVersion='0.1',
+                   basePath='http://wepredict.robrotheram.com',
+                   resourcePath='/',
+                   produces=["application/json", "text/html"],
+                   api_spec_url='/api/spec',
+                   description='WePredict API')
+###################################
+
+
+
 @app.before_request
 def before_request():
     g.db = DB()
