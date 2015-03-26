@@ -32,7 +32,10 @@ class Ccg():
   "My TODO API"
   @swagger.operation(
       notes='get a todo item by ID',
-      nickname='get')
+      nickname='get',
+      # Parameters can be automatically extracted from URLs (e.g. <string:id>)
+      # but you could also override them here, or add other parameters.
+      )
   def get(self, ccg_name):
     # This goes into the summary
     """Get a todo task
@@ -55,7 +58,7 @@ class Ccg():
     return js_data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
-api.add_resource(Ccg, '/ccg/<string:ccg_name>')
+api.add_resource(Ccg, '/ccg')
 
 @app.route('/docs')
 def docs():
