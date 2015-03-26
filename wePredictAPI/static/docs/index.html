@@ -76,6 +76,12 @@
       */
 
       window.swaggerUi.load();
+
+
+       setTimeout(function (){
+           document.getElementById('endpointListTogger_').click();
+       }, 1000); // How long do you want the delay to be (in milliseconds)?
+
   });
   </script>
 </head>
@@ -86,7 +92,7 @@
     <a id="logo" href="http://robrotheram.com">WePredict API</a>
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
-      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input'></div>
       <div class='input'><a id="explore" href="#">Explore</a></div>
     </form>
   </div>
