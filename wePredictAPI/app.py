@@ -121,6 +121,9 @@ class Todo(Resource):
 
 
 
+api.add_resource(Todo, '/todos/<string:todo_id>')
+
+
 @app.before_request
 def before_request():
     g.db = DB()
@@ -135,4 +138,5 @@ import wePredictAPI.views.v1.Pollution
 import wePredictAPI.views.v1.smoking
 
 if __name__ == '__main__':
-    app.run()
+    TodoItem(1, 2, '3')
+    app.run(debug=True)
