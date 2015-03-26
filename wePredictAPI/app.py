@@ -37,7 +37,6 @@ class Ccg():
             js_data.append(objjst)
         return js_data, 200, {'Access-Control-Allow-Origin': '*'}
 
-
 api.add_resource(Ccg, '/ccg')
 
 @app.route('/docs')
