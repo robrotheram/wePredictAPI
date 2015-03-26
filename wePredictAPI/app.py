@@ -123,6 +123,12 @@ class Todo(Resource):
 
 api.add_resource(Todo, '/todos/<string:todo_id>')
 
+@app.route('/docs')
+def docs():
+  return redirect('/static/docs/index.html')
+
+
+
 
 @app.before_request
 def before_request():
