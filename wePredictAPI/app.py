@@ -90,8 +90,8 @@ class Practice(Resource):
 
 
 api.add_resource(CcgList, '/ccg')
-api.add_resource(Practice, '/practice')
-api.add_resource(PracticeList, '/practice/<string:practice_id>')
+api.add_resource(PracticeList, '/practice')
+api.add_resource(Practice, '/practice/<string:practice_id>')
 
 @app.route('/docs')
 def docs():
