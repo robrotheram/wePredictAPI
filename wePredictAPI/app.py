@@ -5,6 +5,7 @@ from flask import Flask, redirect
 from flask.ext.restful import reqparse, abort, Api, Resource, fields,\
     marshal_with
 from flask_restful_swagger import swagger
+import urllib
 
 
 app = Flask(__name__)
@@ -30,43 +31,14 @@ parser.add_argument('task', type=str)
 
 
 
-class Ccg(Resource):
+class CcgList(Resource):
   "My TODO API"
   @swagger.operation(
-      notes='get a todo item by ID',
+      notes='Get list of all CCG in England',
       nickname='get',
-      # Parameters can be automatically extracted from URLs (e.g. <string:id>)
-      # but you could also override them here, or add other parameters.
-      parameters=[
-          {
-            "name": "todo_id_x",
-            "description": "The ID of the TODO item",
-            "required": True,
-            "allowMultiple": False,
-            "dataType": 'string',
-            "paramType": "path"
-          },
-          {
-            "name": "a_bool",
-            "description": "The ID of the TODO item",
-            "required": True,
-            "allowMultiple": False,
-            "dataType": 'boolean',
-            "paramType": "path"
-          }
-      ])
+    )
   def get(self):
-    # This goes into the summary
-    """Get a todo task
-    This will be added to the <strong>Implementation Notes</strong>.
-    It lets you put very long text in your api.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+    """Get list of all CCG in England
     """
     data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
     js_data = []
@@ -75,7 +47,51 @@ class Ccg(Resource):
         js_data.append(objjst)
     return js_data, 200, {'Access-Control-Allow-Origin': '*'}
 
-api.add_resource(Ccg, '/ccg')
+
+class PracticeList(Resource):
+  "My TODO API"
+  @swagger.operation(
+      notes='Get list of all Practice in CCG',
+      nickname='get',
+    )
+  def get(self):
+    """Get list of all CCG in England
+    """
+    qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code ")
+    data = g.db.getResult(qurry)
+    js_data = []
+    for obj in data:
+        objjst = {"Practice": obj['Practice_Name']}
+        js_data.append(objjst)
+    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+
+
+class Practice(Resource):
+  "My TODO API"
+  @swagger.operation(
+      notes='Get a Practice in CCG',
+      nickname='get',
+    )
+  def get(self,practice_id):
+    """Get list of all CCG in England
+    """
+    prac = urllib.unquote(practice_id)
+    qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
+    data = g.db.getResult(qurry)
+    js_data = []
+    for obj in data:
+        objjst = {"Practice": obj['Practice_Name']}
+        js_data.append(objjst)
+    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+
+
+
+
+
+
+api.add_resource(CcgList, '/ccg')
+api.add_resource(Practice, '/practice')
+api.add_resource(PracticeList, '/practice/<string:practice_id>')
 
 @app.route('/docs')
 def docs():
