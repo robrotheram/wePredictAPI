@@ -28,14 +28,52 @@ api = swagger.docs(Api(app), apiVersion='0.1',
 parser = reqparse.RequestParser()
 parser.add_argument('task', type=str)
 
-class Ccg():
-    def get(self):
-        data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
-        js_data = []
-        for obj in data:
-            objjst = {"CCG": obj['CCG']}
-            js_data.append(objjst)
-        return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+
+
+class Ccg(Resource):
+  "My TODO API"
+  @swagger.operation(
+      notes='get a todo item by ID',
+      nickname='get',
+      # Parameters can be automatically extracted from URLs (e.g. <string:id>)
+      # but you could also override them here, or add other parameters.
+      parameters=[
+          {
+            "name": "todo_id_x",
+            "description": "The ID of the TODO item",
+            "required": True,
+            "allowMultiple": False,
+            "dataType": 'string',
+            "paramType": "path"
+          },
+          {
+            "name": "a_bool",
+            "description": "The ID of the TODO item",
+            "required": True,
+            "allowMultiple": False,
+            "dataType": 'boolean',
+            "paramType": "path"
+          }
+      ])
+  def get(self):
+    # This goes into the summary
+    """Get a todo task
+    This will be added to the <strong>Implementation Notes</strong>.
+    It lets you put very long text in your api.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+    est laborum.
+    """
+    data = g.db.getResult("SELECT CCG FROM CCG GROUP BY CCG")
+    js_data = []
+    for obj in data:
+        objjst = {"CCG": obj['CCG']}
+        js_data.append(objjst)
+    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
 
 api.add_resource(Ccg, '/ccg')
 
