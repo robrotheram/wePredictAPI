@@ -55,7 +55,7 @@ class PracticeList(Resource):
       nickname='get',
     )
   def get(self):
-    """Get list of all CCG in England
+    """Get list of all Practice in CCG
     """
     qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code ")
     data = g.db.getResult(qurry)
@@ -72,10 +72,10 @@ class Practice(Resource):
       notes='Get a Practice in CCG',
       nickname='get',
     )
-  def get(self,practice_id):
-    """Get list of all CCG in England
+  def get(self,ccg_id):
+    """Get a Practice in CCG
     """
-    prac = urllib.unquote(practice_id)
+    prac = urllib.unquote(ccg_id)
     qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
     data = g.db.getResult(qurry)
     js_data = []
@@ -91,7 +91,7 @@ class Practice(Resource):
 
 api.add_resource(CcgList, '/ccg')
 api.add_resource(PracticeList, '/practice')
-api.add_resource(Practice, '/practice/<string:practice_id>')
+api.add_resource(Practice, '/practice/<string:ccg_id>')
 
 @app.route('/docs')
 def docs():
