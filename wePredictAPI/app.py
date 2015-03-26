@@ -28,24 +28,11 @@ api = swagger.docs(Api(app), apiVersion='0.1',
 parser = reqparse.RequestParser()
 parser.add_argument('task', type=str)
 
-class Ccg(Resource):
-  "My TODO API"
+class Ccg():
   "My TODO API"
   @swagger.operation(
       notes='get a todo item by ID',
-      nickname='get',
-      # Parameters can be automatically extracted from URLs (e.g. <string:id>)
-      # but you could also override them here, or add other parameters.
-      parameters=[
-          {
-            "name": "todo_id_x",
-            "description": "The ID of the TODO item",
-            "required": True,
-            "allowMultiple": False,
-            "dataType": 'string',
-            "paramType": "path"
-          }
-      ])
+      nickname='get')
   def get(self, ccg_name):
     # This goes into the summary
     """Get a todo task
