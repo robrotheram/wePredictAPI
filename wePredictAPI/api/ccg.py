@@ -5,7 +5,7 @@ from wePredictAPI.database.db import DB
 from flask import Flask, redirect
 from flask.ext.restful import reqparse, abort, Api, Resource, fields, marshal_with
 from flask_restful_swagger import swagger
-import simplejson as json
+import simplejson
 import urllib
 
 
@@ -57,6 +57,19 @@ class HeatMap(Resource):
         objjst = {
             "CCG_Name": obj['CCG_Name'],
             "2009_COPD": float(obj['2009_COPD']),
+            "2010_COPD": float(obj['2010_COPD']),
+            "2011_COPD": float(obj['2011_COPD']),
+            "2012_COPD": float(obj['2012_COPD']),
+            "2013_COPD": float(obj['2013_COPD']),
+            "2009_ASTHMA": float(obj['2009_ASTHMA']),
+            "2010_ASTHMA": float(obj['2010_ASTHMA']),
+            "2011_ASTHMA": float(obj['2011_ASTHMA']),
+            "2012_ASTHMA": float(obj['2012_ASTHMA']),
+            "2012_smoking_prevalence_Value": float(obj['2012_smoking_prevalence_Value']),
+            "2013_smoking_prevalence_Value": float(obj['2013_smoking_prevalence_Value']),
+            "2010_flu_vaccine_65_Value": float(obj['2010_flu_vaccine_65_Value']),
+            "2010_flu_vaccine_06_Value": float(obj['2010_flu_vaccine_06_Value'])
             }
         js_data.append(objjst)
+
     return js_data, 200, {'Access-Control-Allow-Origin': '*'}
