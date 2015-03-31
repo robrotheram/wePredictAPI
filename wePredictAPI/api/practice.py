@@ -48,8 +48,6 @@ class PracticeData(Resource):
     """Get Data of a specific Practice in CCG
     """
     practice = urllib.unquote(practice_id)
-    qurry = ("select * from TBL_PRACTICE_INFO "
-             "JOIN  TBL_PRACTICE_DATA ON TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-             "where Practice_Name = '"+practice+"';")
+    qurry = ("select * from TBL_PRACTICE_DATA where Practice_Code ='"+practice+"' ")
     data = g.db.getResult(qurry)
     return data, 200, {'Access-Control-Allow-Origin': '*'}
