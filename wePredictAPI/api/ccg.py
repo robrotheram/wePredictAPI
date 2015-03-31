@@ -5,7 +5,7 @@ from wePredictAPI.database.db import DB
 from flask import Flask, redirect
 from flask.ext.restful import reqparse, abort, Api, Resource, fields, marshal_with
 from flask_restful_swagger import swagger
-import simplejson
+import simplejson as json
 import urllib
 
 
@@ -63,5 +63,5 @@ class HeatMap(Resource):
             "2013_COPD": obj['2013_COPD']
             }
         js_data.append(objjst)
-    print simplejson.dumps(js_data)
-    return simplejson.dumps(js_data), 200, {'Access-Control-Allow-Origin': '*'}
+    #print simplejson.dumps(js_data)
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
