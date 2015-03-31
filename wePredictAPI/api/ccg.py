@@ -72,4 +72,4 @@ class HeatMap(Resource):
             }
         js_data.append(objjst)
 
-    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
