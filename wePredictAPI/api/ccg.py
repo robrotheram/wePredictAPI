@@ -45,8 +45,8 @@ class HeatMap(Resource):
                           "sum(2013_smoking_prevalence_Value),"
                           "sum(2010_flu_vaccine_65_Value), "
                           "sum(2010_flu_vaccine_06_Value)  "
-                          "FROM wePredictV2.TBL_PRACTICE_INFO "
-                          "join wePredictV2.TBL_PRACTICE_DATA on "
+                          "FROM TBL_PRACTICE_INFO "
+                          "join TBL_PRACTICE_DATA on "
                           "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "group by CCG_Name;")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
