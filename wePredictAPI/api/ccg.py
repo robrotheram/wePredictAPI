@@ -52,4 +52,16 @@ class HeatMap(Resource):
                           "join TBL_PRACTICE_DATA on "
                           "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "group by CCG_Name;")
-    return simplejson.dumps(data), 200, {'Access-Control-Allow-Origin': '*'}
+    js_data = []
+    for obj in data:
+        objjst = {
+            "CCG_Name": obj['CCG_Name'],
+            "2009_COPD": obj['2009_COPD'],
+            "2010_COPD": obj['2010_COPD'],
+            "2011_COPD": obj['2011_COPD'],
+            "2012_COPD": obj['2012_COPD'],
+            "2013_COPD": obj['2013_COPD']
+            }
+        js_data.append(objjst)
+
+    return simplejson.dumps(js_data), 200, {'Access-Control-Allow-Origin': '*'}
