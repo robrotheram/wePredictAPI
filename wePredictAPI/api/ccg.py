@@ -5,7 +5,10 @@ from wePredictAPI.database.db import DB
 from flask import Flask, redirect
 from flask.ext.restful import reqparse, abort, Api, Resource, fields, marshal_with
 from flask_restful_swagger import swagger
+import simplejson
 import urllib
+
+
 
 
 class CcgList(Resource):
@@ -49,4 +52,4 @@ class HeatMap(Resource):
                           "join TBL_PRACTICE_DATA on "
                           "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
+    return simplejson.dumps(data), 200, {'Access-Control-Allow-Origin': '*'}
