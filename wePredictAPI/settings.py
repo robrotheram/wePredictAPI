@@ -6,4 +6,4 @@ import os
 hostname=os.environ['OPENSHIFT_MYSQL_DB_HOST']
 username=os.environ['OPENSHIFT_MYSQL_DB_USERNAME']
 password=os.environ['OPENSHIFT_MYSQL_DB_PASSWORD']
-database="wePredict"
+database="wePredictV2"
