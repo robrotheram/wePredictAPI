@@ -7,7 +7,7 @@ from flask_restful_swagger import swagger
 import urllib
 
 
-from api.ccg import CcgList
+from api.ccg import CcgList, HeatMap
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -35,15 +35,8 @@ parser.add_argument('task', type=str)
 
 
 
-
-
-
-
-
-
-
-
 api.add_resource(CcgList, '/ccg')
+api.add_resource(CcgList, '/ccg/heat_map')
 
 #api.add_resource(PracticeList, '/practice')
 #api.add_resource(Practice, '/practice/<string:ccg_id>')
