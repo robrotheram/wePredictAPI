@@ -56,7 +56,7 @@ class HeatMap(Resource):
     for obj in data:
         objjst = {
             "CCG_Name": obj['CCG_Name'],
-            "2009_COPD": obj['2009_COPD'],
+            "2009_COPD": float(obj['2009_COPD']),
             }
         js_data.append(objjst)
     return js_data, 200, {'Access-Control-Allow-Origin': '*'}
