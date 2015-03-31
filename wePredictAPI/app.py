@@ -36,7 +36,7 @@ parser.add_argument('task', type=str)
 
 
 api.add_resource(CcgList, '/ccg')
-api.add_resource(CcgList, '/ccg/heat_map')
+api.add_resource(HeatMap, '/ccg/heat_map')
 
 #api.add_resource(PracticeList, '/practice')
 #api.add_resource(Practice, '/practice/<string:ccg_id>')
