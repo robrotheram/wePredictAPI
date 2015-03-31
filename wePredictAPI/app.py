@@ -9,7 +9,7 @@ import simplejson as json
 
 
 from api.ccg import CcgList, HeatMap
-
+from api.practice import PracticeData
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -40,7 +40,8 @@ api.add_resource(CcgList, '/ccg')
 api.add_resource(HeatMap, '/ccg/heat_map')
 
 #api.add_resource(PracticeList, '/practice')
-#api.add_resource(Practice, '/practice/<string:ccg_id>')
+
+api.add_resource(PracticeData, '/practice/data/<string:practice_id>')
 
 @app.route('/docs')
 def docs():

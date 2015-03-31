@@ -21,11 +21,7 @@ class Practice(Resource):
     prac = urllib.unquote(ccg_id)
     qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
     data = g.db.getResult(qurry)
-    js_data = []
-    for obj in data:
-        objjst = {"Practice": obj['Practice_Name']}
-        js_data.append(objjst)
-    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
 
@@ -40,8 +36,20 @@ class PracticeList(Resource):
     """
     qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code ")
     data = g.db.getResult(qurry)
-    js_data = []
-    for obj in data:
-        objjst = {"Practice": obj['Practice_Name']}
-        js_data.append(objjst)
-    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
+
+class PracticeData(Resource):
+  "My TODO API"
+  @swagger.operation(
+      notes='Get Data of a specific Practice in CCG',
+      nickname='get',
+    )
+  def get(self,practice_id):
+    """Get Data of a specific Practice in CCG
+    """
+    practice = urllib.unquote(practice_id)
+    qurry = ("select * from TBL_PRACTICE_INFO "
+             "JOIN  TBL_PRACTICE_DATA ON TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
+             "where Practice_Name = '"+practice+"';")
+    data = g.db.getResult(qurry)
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
