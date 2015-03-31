@@ -65,10 +65,10 @@ class HeatMap(Resource):
             "2010_ASTHMA": float(obj['2010_ASTHMA']),
             "2011_ASTHMA": float(obj['2011_ASTHMA']),
             "2012_ASTHMA": float(obj['2012_ASTHMA']),
-            "2012_smoking_prevalence_Value": float(obj['2012_smoking_prevalence_Value']),
-            "2013_smoking_prevalence_Value": float(obj['2013_smoking_prevalence_Value']),
-            "2010_flu_vaccine_65_Value": float(obj['2010_flu_vaccine_65_Value']),
-            "2010_flu_vaccine_06_Value": float(obj['2010_flu_vaccine_06_Value'])
+            "2012_SMOKING": float(obj['2012_SMOKING']),
+            "2013_SMOKING": float(obj['2013_SMOKING']),
+            "2010_FLU65": float(obj['2010_FLU65']),
+            "2010_FLU06": float(obj['2010_FLU06'])
             }
         js_data.append(objjst)
 
