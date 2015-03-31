@@ -57,11 +57,6 @@ class HeatMap(Resource):
         objjst = {
             "CCG_Name": obj['CCG_Name'],
             "2009_COPD": obj['2009_COPD'],
-            "2010_COPD": obj['2010_COPD'],
-            "2011_COPD": obj['2011_COPD'],
-            "2012_COPD": obj['2012_COPD'],
-            "2013_COPD": obj['2013_COPD']
             }
         js_data.append(objjst)
-    js_output = {"data":json.dumps(js_data)}
-    return js_output, 200, {'Access-Control-Allow-Origin': '*'}
+    return js_data, 200, {'Access-Control-Allow-Origin': '*'}
