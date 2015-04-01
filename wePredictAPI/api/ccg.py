@@ -24,7 +24,7 @@ class CcgList(Resource):
   def get(self):
     """Get list of all CCG in England
     """
-    data = g.db.getResult("SELECT Practice_Code,CCG_Name FROM TBL_PRACTICE_INFO group by CCG_Name;")
+    data = g.db.getResult("SELECT Practice_Code,CCG_Name FROM TBL_PRACTICE_INFO group by CCG_Name order by Practice_Code ;")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 

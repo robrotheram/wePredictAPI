@@ -27,7 +27,7 @@ class Practice(Resource):
     """
     prac = urllib.unquote(ccg_id)
     print "practice Data - "+prac
-    data = g.db.getResultParamaters("SELECT Practice_Code, Practice_Name  FROM TBL_PRACTICE_INFO where CCG_Name = %s order by Practice_Code ;",(prac))
+    data = g.db.getResultParamaters("SELECT Practice_Code, Practice_Name  FROM TBL_PRACTICE_INFO where CCG_Name = %s;",(prac))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
