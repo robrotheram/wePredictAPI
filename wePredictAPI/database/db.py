@@ -13,10 +13,13 @@ class DB(object):
 
         """
 
-    def getResult(self,querry):
+    def getResult(self,querry,values):
 
         query = PySQLPool.getNewQuery(connection)
-        query.Query(querry)
+        if values is None:
+            query.Query(querry)
+        else:
+            query.Query(querry,values)
         data = query.record
         return data
 
