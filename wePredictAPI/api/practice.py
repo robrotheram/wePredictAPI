@@ -16,9 +16,9 @@ class Practice(Resource):
     """Get a Practice in CCG
     """
     prac = urllib.unquote(ccg_id)
-    qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code where CCG = '"+prac+"';")
-    data = g.db.getResult(qurry)
+    data = g.db.getResultParamaters("SELECT Practice_Code,Practice_Name  FROM TBL_PRACTICE_INFO where CCG_Name = \"%s\";",(prac))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
+
 
 
 
@@ -31,9 +31,9 @@ class PracticeList(Resource):
   def get(self):
     """Get list of all Practice in CCG
     """
-    qurry = ("SELECT Practice_Name FROM ADRESS join CCG on PracticeCode = CCG.Practice_Code ")
-    data = g.db.getResult(qurry)
+    data = g.db.getResult("SELECT Practice_Code,Practice_Name FROM TBL_PRACTICE_INFO")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
+
 
 class PracticeData(Resource):
   "My TODO API"
@@ -78,7 +78,7 @@ class Practice_Asmatha(Resource):
                           "join TBL_PRACTICE_DATA on "
                           "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "where CCG_NAME = %s "
-                          "group by CCG_NAME;",(practice_id))
+                          "group by CCG_NAME;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class Practice_COPD_QOF(Resource):
@@ -108,7 +108,7 @@ class Practice_COPD_QOF(Resource):
                           "AVG(2013_COPD_QOF_Upper) as 2013_COPD_QOF_Upper,"
                           "AVG(2013_COPD_QOF_Lower) as 2013_COPD_QOF_Lower "
                           "FROM TBL_PRACTICE_DATA "
-                          "where Practice_Code = %s;",(practice_id))
+                          "where Practice_Code = %s;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
@@ -139,7 +139,7 @@ class Practice_Obesity_QOF(Resource):
                           "AVG(2013_Obesity_QOF_Upper) as 2013_Obesity_QOF_Upper,"
                           "AVG(2013_Obesity_QOF_Lower) as 2013_Obesity_QOF_Lower "
                           "FROM TBL_PRACTICE_DATA "
-                          "where Practice_Code = %s;",(practice_id))
+                          "where Practice_Code = %s;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class Practice_CHD_QOF(Resource):
@@ -169,5 +169,5 @@ class Practice_CHD_QOF(Resource):
                           "AVG(2013_CHD_QOF_Upper) as 2013_CHD_QOF_Upper,"
                           "AVG(2013_CHD_QOF_Lower) as 2013_CHD_QOF_Lower "
                           "FROM TBL_PRACTICE_DATA "
-                          "where Practice_Code = %s;",(practice_id))
+                          "where Practice_Code = %s;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
