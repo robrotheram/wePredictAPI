@@ -8,8 +8,8 @@ import urllib
 import simplejson as json
 
 
-from api.ccg import CcgList, HeatMap
-from api.practice import PracticeData
+from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL
+from api.practice import PracticeData, Practice, PracticeList
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -37,11 +37,14 @@ parser.add_argument('task', type=str)
 
 
 api.add_resource(CcgList, '/ccg')
+api.add_resource(CCG_Asmatha_ALL, '/ccg/asmatha')
+api.add_resource(CCG_Asmatha, '/ccg/asmatha/<string:ccg_id>')
+
 api.add_resource(HeatMap, '/ccg/heat_map')
-
-#api.add_resource(PracticeList, '/practice')
-
 api.add_resource(PracticeData, '/practice/data/<string:practice_id>')
+api.add_resource(Practice, '/practice/<string:practice_id>')
+api.add_resource(PracticeList, '/practice/<string:practice_id>')
+
 
 @app.route('/docs')
 def docs():

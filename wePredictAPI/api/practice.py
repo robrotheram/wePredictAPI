@@ -1,9 +1,6 @@
 __author__ = 'robert'
 
-from flask import Flask ,g
-from flask_cors import CORS
-from wePredictAPI.database.db import DB
-from flask import Flask, redirect
+from flask import g
 from flask.ext.restful import reqparse, abort, Api, Resource, fields, marshal_with
 from flask_restful_swagger import swagger
 import urllib
