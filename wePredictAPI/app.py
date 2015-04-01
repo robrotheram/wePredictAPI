@@ -64,6 +64,11 @@ api = swagger.docs(Api(app), apiVersion='0.1',
                    description='WePredict API')
 
 
+parser = reqparse.RequestParser()
+parser.add_argument('task', type=str)
+
+
+
 api.add_resource(CcgList, '/ccg')
 
 api.add_resource(CCG_Asmatha_ALL, '/ccg/asmatha')
