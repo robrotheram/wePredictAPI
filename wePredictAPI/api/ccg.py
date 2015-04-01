@@ -45,9 +45,8 @@ class HeatMap(Resource):
                           "AVG(2013_smoking_prevalence_Value) as 2013_SMOKING,"
                           "AVG(2010_flu_vaccine_65_Value) as 2010_FLU65, "
                           "AVG(2010_flu_vaccine_06_Value) as 2010_FLU06  "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
+                          "FROM TBL_PRACTICE_DATA "
+                          "join TBL_PRACTICE_INFO on TBL_PRACTICE_DATA.Practice_Code = TBL_PRACTICE_INFO.Practice_Code "
                           "group by CCG_Name;")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
@@ -72,10 +71,9 @@ class CCG_Asmatha_ALL(Resource):
                           "AVG(2011_Asthma_Lower) as 2011_ASTHMA_Lower,"
                           "AVG(2012_Asthma_Value) as 2012_ASTHMA,"
                           "AVG(2012_Asthma_Upper) as 2012_Asthma_Upper,"
-                          "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower"
+                          "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower "
                           "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
+                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "group by CCG_Name;")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
