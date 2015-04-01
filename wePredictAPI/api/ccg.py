@@ -99,10 +99,10 @@ class CCG_Asmatha(Resource):
                           "AVG(2011_Asthma_Lower) as 2011_ASTHMA_Lower,"
                           "AVG(2012_Asthma_Value) as 2012_ASTHMA,"
                           "AVG(2012_Asthma_Upper) as 2012_Asthma_Upper,"
-                          "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower"
+                          "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower "
                           "FROM TBL_PRACTICE_INFO "
                           "join TBL_PRACTICE_DATA on "
                           "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s"
+                          "where CCG_NAME = %s "
                           "group by CCG_NAME;",(ccg_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
