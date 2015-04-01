@@ -59,7 +59,7 @@ api.add_resource(Practice, '/practice/<string:practice_id>')
 api.add_resource(PracticeList, '/practice')
 
 
-api.add_resource(Practice_Asmatha_ALL, ‘/practice/asmatha')
+api.add_resource(Practice_Asmatha_ALL, '/practice/asmatha')
 api.add_resource(Practice_Asmatha, '/practice/asmatha/<string:practice_id>')
 
 api.add_resource(Practice_CHD_QOF_ALL, '/practice/chd')
