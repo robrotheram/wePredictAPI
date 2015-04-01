@@ -83,6 +83,9 @@ api.add_resource(CCG_Obesity_QOF, '/ccg/obesity/<string:ccg_id>')
 
 api.add_resource(HeatMap, '/ccg/heat_map')
 api.add_resource(PracticeData, '/practice/data/<string:practice_id>')
+
+
+
 api.add_resource(Practice, '/practice/<string:practice_id>')
 api.add_resource(PracticeList, '/practice')
 
