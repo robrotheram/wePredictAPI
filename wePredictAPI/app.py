@@ -91,7 +91,7 @@ api.add_resource(PracticeData, '/practice/data/<string:practice_id>')
 
 
 
-api.add_resource(Practice, '/practice/<string:practice_id>')
+api.add_resource(Practice, '/practice/<string:ccg_id>')
 api.add_resource(PracticeList, '/practice')
 
 
