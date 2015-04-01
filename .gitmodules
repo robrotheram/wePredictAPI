@@ -1,0 +1,3 @@
+[submodule "wePredictAPI/frontend"]
+	path = wePredictAPI/frontend
+	url = https://github.com/robrotheram/Angular-test.git

@@ -105,6 +105,13 @@ def docs():
     """
     return redirect('/static/docs/index.html')
 
+@app.route('/')
+def docs():
+    """
+    URL route to the frontend of the application
+    @retval       Url Path
+    """
+    return redirect('/frontend/index.html')
 
 
 
