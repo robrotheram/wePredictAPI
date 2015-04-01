@@ -111,7 +111,7 @@ def homepage():
     URL route to the frontend of the application
     @retval       Url Path
     """
-    return redirect('/frontend/index.html')
+    return redirect('/static/front/app/index.html')
 
 
 
