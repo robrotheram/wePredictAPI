@@ -10,7 +10,9 @@ import PySQLPool
 connection = PySQLPool.getNewConnection(username=username, password=password, host=hostname, db=database)
 
 class DB(object):
-
+    """
+    Contains Functions to get results from the database
+    """
     def __init__(self):
         """
         """
