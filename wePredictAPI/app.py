@@ -8,7 +8,7 @@ import urllib
 import simplejson as json
 
 
-from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL
+from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL, CCG_CHD_QOF,CCG_CHD_QOF_ALL,CCG_COPD_QOF,CCG_COPD_QOF_ALL,CCG_Obesity_QOF,CCG_Obesity_QOF_ALL
 from api.practice import PracticeData, Practice, PracticeList
 app = Flask(__name__)
 cors = CORS(app)
@@ -37,8 +37,21 @@ parser.add_argument('task', type=str)
 
 
 api.add_resource(CcgList, '/ccg')
+
 api.add_resource(CCG_Asmatha_ALL, '/ccg/asmatha')
 api.add_resource(CCG_Asmatha, '/ccg/asmatha/<string:ccg_id>')
+
+api.add_resource(CCG_CHD_QOF_ALL, '/ccg/chd')
+api.add_resource(CCG_CHD_QOF, '/ccg/chd/<string:ccg_id>')
+
+api.add_resource(CCG_COPD_QOF_ALL, '/ccg/copd')
+api.add_resource(CCG_COPD_QOF, '/ccg/copd/<string:ccg_id>')
+
+api.add_resource(CCG_Obesity_QOF_ALL, '/ccg/obesity')
+api.add_resource(CCG_Obesity_QOF, '/ccg/obesity/<string:ccg_id>')
+
+
+
 
 api.add_resource(HeatMap, '/ccg/heat_map')
 api.add_resource(PracticeData, '/practice/data/<string:practice_id>')
