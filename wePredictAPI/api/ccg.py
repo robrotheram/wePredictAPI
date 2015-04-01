@@ -87,7 +87,7 @@ class CCG_Asmatha(Resource):
     """Get Data of a specific Practice in CCG
     """
     ccg = urllib.unquote(ccg_id)
-    data = g.db.getResult("SELECT CCG_Name, "
+    data = g.db.getResultParamaters("SELECT CCG_Name, "
                           "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
                           "AVG(2009_Asthma_Upper) as 2009_ASTHMA_Upper,"
                           "AVG(2009_Asthma_Lower) as 2009_ASTHMA_Lower,"

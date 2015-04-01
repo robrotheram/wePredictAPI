@@ -13,7 +13,7 @@ class DB(object):
 
         """
 
-    def getResult(self,querry,values):
+    def getResultParamaters(self,querry,values):
 
         query = PySQLPool.getNewQuery(connection)
         query.Query(querry,values)
