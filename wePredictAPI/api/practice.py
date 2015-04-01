@@ -51,33 +51,6 @@ class PracticeData(Resource):
 
 
 
-class Practice_Asmatha_ALL(Resource):
-  "My TODO API"
-  @swagger.operation(
-      notes='Get Heatmap data',
-      nickname='get',
-    )
-  def get(self):
-    """Get heat map infomation
-    """
-    data = g.db.getResult("SELECT CCG_Name, "
-                          "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
-                          "AVG(2009_Asthma_Upper) as 2009_ASTHMA_Upper,"
-                          "AVG(2009_Asthma_Lower) as 2009_ASTHMA_Lower,"
-                          "AVG(2010_Asthma_Value) as 2010_ASTHMA,"
-                          "AVG(2010_Asthma_Upper) as 2010_Asthma_Upper,"
-                          "AVG(2010_Asthma_Lower) as 2010_Asthma_Lower,"
-                          "AVG(2011_Asthma_Value) as 2011_ASTHMA,"
-                          "AVG(2011_Asthma_Upper) as 2011_ASTHMA_Upper,"
-                          "AVG(2011_Asthma_Lower) as 2011_ASTHMA_Lower,"
-                          "AVG(2012_Asthma_Value) as 2012_ASTHMA,"
-                          "AVG(2012_Asthma_Upper) as 2012_Asthma_Upper,"
-                          "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
-
 class Practice_Asmatha(Resource):
   "My TODO API"
   @swagger.operation(
@@ -108,36 +81,6 @@ class Practice_Asmatha(Resource):
                           "group by CCG_NAME;",(practice_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
-class Practice_COPD_QOF_ALL(Resource):
-  "My TODO API"
-  @swagger.operation(
-      notes='Get Heatmap data',
-      nickname='get',
-    )
-  def get(self):
-    """Get heat map infomation
-    """
-    data = g.db.getResult("SELECT CCG_Name, "
-                          "AVG(2009_COPD_QOF_Value) as 2009_COPD_QOF,"
-                          "AVG(2009_COPD_QOF_Upper) as 2009_COPD_QOF_Upper,"
-                          "AVG(2009_COPD_QOF_Lower) as 2009_COPD_QOF_Lower,"
-                          "AVG(2010_COPD_QOF_Value) as 2010_COPD_QOF,"
-                          "AVG(2010_COPD_QOF_Upper) as 2010_COPD_QOF_Upper,"
-                          "AVG(2010_COPD_QOF_Lower) as 2010_COPD_QOF_Lower,"
-                          "AVG(2011_COPD_QOF_Value) as 2011_COPD_QOF,"
-                          "AVG(2011_COPD_QOF_Upper) as 2011_COPD_QOF_Upper,"
-                          "AVG(2011_COPD_QOF_Lower) as 2011_COPD_QOF_Lower,"
-                          "AVG(2012_COPD_QOF_Value) as 2012_COPD_QOF,"
-                          "AVG(2012_COPD_QOF_Upper) as 2012_COPD_QOF_Upper,"
-                          "AVG(2012_COPD_QOF_Lower) as 2012_COPD_QOF_Lower, "
-                          "AVG(2013_COPD_QOF_Value) as 2013_COPD_QOF,"
-                          "AVG(2013_COPD_QOF_Upper) as 2013_COPD_QOF_Upper,"
-                          "AVG(2013_COPD_QOF_Lower) as 2013_COPD_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
-
 class Practice_COPD_QOF(Resource):
   "My TODO API"
   @swagger.operation(
@@ -164,43 +107,10 @@ class Practice_COPD_QOF(Resource):
                           "AVG(2013_COPD_QOF_Value) as 2013_COPD_QOF,"
                           "AVG(2013_COPD_QOF_Upper) as 2013_COPD_QOF_Upper,"
                           "AVG(2013_COPD_QOF_Lower) as 2013_COPD_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s "
-                          "group by CCG_NAME;",(practice_id))
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(practice_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
-
-class Practice_Obesity_QOF_ALL(Resource):
-  "My TODO API"
-  @swagger.operation(
-      notes='Get Heatmap data',
-      nickname='get',
-    )
-  def get(self):
-    """Get heat map infomation
-    """
-    data = g.db.getResult("SELECT CCG_Name, "
-                          "AVG(2009_Obesity_QOF_Value) as 2009_Obesity_QOF,"
-                          "AVG(2009_Obesity_QOF_Upper) as 2009_Obesity_QOF_Upper,"
-                          "AVG(2009_Obesity_QOF_Lower) as 2009_Obesity_QOF_Lower,"
-                          "AVG(2010_Obesity_QOF_Value) as 2010_Obesity_QOF,"
-                          "AVG(2010_Obesity_QOF_Upper) as 2010_Obesity_QOF_Upper,"
-                          "AVG(2010_Obesity_QOF_Lower) as 2010_Obesity_QOF_Lower,"
-                          "AVG(2011_Obesity_QOF_Value) as 2011_Obesity_QOF,"
-                          "AVG(2011_Obesity_QOF_Upper) as 2011_Obesity_QOF_Upper,"
-                          "AVG(2011_Obesity_QOF_Lower) as 2011_Obesity_QOF_Lower,"
-                          "AVG(2012_Obesity_QOF_Value) as 2012_Obesity_QOF,"
-                          "AVG(2012_Obesity_QOF_Upper) as 2012_Obesity_QOF_Upper,"
-                          "AVG(2012_Obesity_QOF_Lower) as 2012_Obesity_QOF_Lower, "
-                          "AVG(2013_Obesity_QOF_Value) as 2013_Obesity_QOF,"
-                          "AVG(2013_Obesity_QOF_Upper) as 2013_Obesity_QOF_Upper,"
-                          "AVG(2013_Obesity_QOF_Lower) as 2013_Obesity_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class Practice_Obesity_QOF(Resource):
   "My TODO API"
@@ -228,41 +138,10 @@ class Practice_Obesity_QOF(Resource):
                           "AVG(2013_Obesity_QOF_Value) as 2013_Obesity_QOF,"
                           "AVG(2013_Obesity_QOF_Upper) as 2013_Obesity_QOF_Upper,"
                           "AVG(2013_Obesity_QOF_Lower) as 2013_Obesity_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s "
-                          "group by CCG_NAME;",(practice_id))
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(practice_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
-class Practice_CHD_QOF_ALL(Resource):
-  "My TODO API"
-  @swagger.operation(
-      notes='Get Heatmap data',
-      nickname='get',
-    )
-  def get(self):
-    """Get heat map infomation
-    """
-    data = g.db.getResult("SELECT CCG_Name, "
-                          "AVG(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
-                          "AVG(2009_CHD_QOF_Upper) as 2009_CHD_QOF_Upper,"
-                          "AVG(2009_CHD_QOF_Lower) as 2009_CHD_QOF_Lower,"
-                          "AVG(2010_CHD_QOF_Value) as 2010_CHD_QOF,"
-                          "AVG(2010_CHD_QOF_Upper) as 2010_CHD_QOF_Upper,"
-                          "AVG(2010_CHD_QOF_Lower) as 2010_CHD_QOF_Lower,"
-                          "AVG(2011_CHD_QOF_Value) as 2011_CHD_QOF,"
-                          "AVG(2011_CHD_QOF_Upper) as 2011_CHD_QOF_Upper,"
-                          "AVG(2011_CHD_QOF_Lower) as 2011_CHD_QOF_Lower,"
-                          "AVG(2012_CHD_QOF_Value) as 2012_CHD_QOF,"
-                          "AVG(2012_CHD_QOF_Upper) as 2012_CHD_QOF_Upper,"
-                          "AVG(2012_CHD_QOF_Lower) as 2012_CHD_QOF_Lower, "
-                          "AVG(2013_CHD_QOF_Value) as 2013_CHD_QOF,"
-                          "AVG(2013_CHD_QOF_Upper) as 2013_CHD_QOF_Upper,"
-                          "AVG(2013_CHD_QOF_Lower) as 2013_CHD_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
+
 class Practice_CHD_QOF(Resource):
   "My TODO API"
   @swagger.operation(
@@ -289,9 +168,6 @@ class Practice_CHD_QOF(Resource):
                           "AVG(2013_CHD_QOF_Value) as 2013_CHD_QOF,"
                           "AVG(2013_CHD_QOF_Upper) as 2013_CHD_QOF_Upper,"
                           "AVG(2013_CHD_QOF_Lower) as 2013_CHD_QOF_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s "
-                          "group by CCG_NAME;",(practice_id))
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(practice_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}

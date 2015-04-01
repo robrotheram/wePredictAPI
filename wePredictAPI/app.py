@@ -9,7 +9,7 @@ import simplejson as json
 
 
 from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL, CCG_CHD_QOF,CCG_CHD_QOF_ALL,CCG_COPD_QOF,CCG_COPD_QOF_ALL,CCG_Obesity_QOF,CCG_Obesity_QOF_ALL
-from api.practice import PracticeData, Practice, PracticeList, Practice_Asmatha,Practice_Asmatha_ALL,Practice_CHD_QOF,Practice_CHD_QOF_ALL,Practice_COPD_QOF,Practice_COPD_QOF_ALL,Practice_Obesity_QOF,Practice_Obesity_QOF_ALL
+from api.practice import PracticeData, Practice, PracticeList, Practice_Asmatha,Practice_CHD_QOF,Practice_COPD_QOF,Practice_Obesity_QOF
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -59,16 +59,12 @@ api.add_resource(Practice, '/practice/<string:practice_id>')
 api.add_resource(PracticeList, '/practice')
 
 
-api.add_resource(Practice_Asmatha_ALL, '/practice/asmatha')
 api.add_resource(Practice_Asmatha, '/practice/asmatha/<string:practice_id>')
 
-api.add_resource(Practice_CHD_QOF_ALL, '/practice/chd')
 api.add_resource(Practice_CHD_QOF, '/practice/chd/<string:practice_id>')
 
-api.add_resource(Practice_COPD_QOF_ALL, '/practice/copd')
 api.add_resource(Practice_COPD_QOF, '/practice/copd/<string:practice_id>')
 
-api.add_resource(Practice_Obesity_QOF_ALL, '/practice/obesity')
 api.add_resource(Practice_Obesity_QOF, '/practice/obesity/<string:practice_id>')
 
 
