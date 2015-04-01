@@ -61,7 +61,7 @@ class Practice_Asmatha(Resource):
     """Get Data of a specific Practice in CCG
     """
     ccg = urllib.unquote(practice_id)
-    data = g.db.getResultParamaters("SELECT CCG_Name, "
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
                           "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
                           "AVG(2009_Asthma_Upper) as 2009_ASTHMA_Upper,"
                           "AVG(2009_Asthma_Lower) as 2009_ASTHMA_Lower,"
@@ -74,11 +74,8 @@ class Practice_Asmatha(Resource):
                           "AVG(2012_Asthma_Value) as 2012_ASTHMA,"
                           "AVG(2012_Asthma_Upper) as 2012_Asthma_Upper,"
                           "AVG(2012_Asthma_Lower) as 2012_Asthma_Lower "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on "
-                          "TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s "
-                          "group by CCG_NAME;",(ccg))
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class Practice_COPD_QOF(Resource):
@@ -91,7 +88,7 @@ class Practice_COPD_QOF(Resource):
     """Get Data of a specific Practice in CCG
     """
     ccg = urllib.unquote(practice_id)
-    data = g.db.getResultParamaters("SELECT CCG_Name, "
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
                           "AVG(2009_COPD_QOF_Value) as 2009_COPD_QOF,"
                           "AVG(2009_COPD_QOF_Upper) as 2009_COPD_QOF_Upper,"
                           "AVG(2009_COPD_QOF_Lower) as 2009_COPD_QOF_Lower,"
@@ -122,7 +119,7 @@ class Practice_Obesity_QOF(Resource):
     """Get Data of a specific Practice in CCG
     """
     ccg = urllib.unquote(practice_id)
-    data = g.db.getResultParamaters("SELECT CCG_Name, "
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
                           "AVG(2009_Obesity_QOF_Value) as 2009_Obesity_QOF,"
                           "AVG(2009_Obesity_QOF_Upper) as 2009_Obesity_QOF_Upper,"
                           "AVG(2009_Obesity_QOF_Lower) as 2009_Obesity_QOF_Lower,"
@@ -152,7 +149,7 @@ class Practice_CHD_QOF(Resource):
     """Get Data of a specific Practice in CCG
     """
     ccg = urllib.unquote(practice_id)
-    data = g.db.getResultParamaters("SELECT CCG_Name, "
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
                           "AVG(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
                           "AVG(2009_CHD_QOF_Upper) as 2009_CHD_QOF_Upper,"
                           "AVG(2009_CHD_QOF_Lower) as 2009_CHD_QOF_Lower,"

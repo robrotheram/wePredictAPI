@@ -1,19 +1,41 @@
-from flask import Flask ,g
+from flask import g
 from flask_cors import CORS
 from wePredictAPI.database.db import DB
 from flask import Flask, redirect
-from flask.ext.restful import reqparse, abort, Api, Resource, fields, marshal_with
+from flask.ext.restful import reqparse, Api, Resource
 from flask_restful_swagger import swagger
-import urllib
-import simplejson as json
-
-
 from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL, CCG_CHD_QOF,CCG_CHD_QOF_ALL,CCG_COPD_QOF,CCG_COPD_QOF_ALL,CCG_Obesity_QOF,CCG_Obesity_QOF_ALL
 from api.practice import PracticeData, Practice, PracticeList, Practice_Asmatha,Practice_CHD_QOF,Practice_COPD_QOF,Practice_Obesity_QOF
+
+
+"""
+@package app
+Compute the first ten numbers in the Fibonacci sequence
+"""
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = True
+
+
+
+
+class error(Resource):
+  "My TODO API"
+  @swagger.operation(
+      notes='Get list of all CCG in England',
+      nickname='get',
+    )
+  def get(self):
+    """
+    Return a Fibonacci number
+
+    @param    n   Number in the sequence to return
+    @retval       The nth Fibonacci number
+    """
+    data = g.db.getResult("SELECT Practice_Code,CCG_Name FROM TBL_PRACTICE_INFO group by CCG_Name;")
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
 
@@ -71,7 +93,13 @@ api.add_resource(Practice_Obesity_QOF, '/practice/obesity/<string:practice_id>')
 
 @app.route('/docs')
 def docs():
-  return redirect('/static/docs/index.html')
+    """
+    Return a Fibonacci number
+
+    @param    n   Number in the sequence to return
+    @retval       The nth Fibonacci number
+    """
+    return redirect('/static/docs/index.html')
 
 
 
