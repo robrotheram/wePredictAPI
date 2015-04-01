@@ -1,3 +1,8 @@
+
+## @package wePredictAPI.app
+#  Starts up the Server and contains the loading the API routes
+
+
 from flask import g
 from flask_cors import CORS
 from wePredictAPI.database.db import DB
@@ -9,53 +14,54 @@ from api.practice import PracticeData, Practice, PracticeList, Practice_Asmatha,
 
 
 """
-@package app
-Compute the first ten numbers in the Fibonacci sequence
+\mainpage WePredict API
+
+ \section intro_sec Introduction
+
+This project is the backend API to the WePredict Health Visualisation. This Document contains specific information for
+what every file and function does. For API documentation for use of the data can be found here:
+<a href="http://wepredict.robrotheram.com/docs">http://wepredict.robrotheram.com/docs</a>
+ <br>
+ Project Authors
+ <ul>
+ <li>Robert Fletcher</li>
+ </ul>
+
+ \section install_sec Simple Installation
+
+ \subsection step1 Step 1: Create a account in Openshift:
+ <a href="https://www.openshift.com/">https://www.openshift.com/</a>
+ \subsection step2 Step 2: Add a application: Go to the python and click show all and select the Flask container
+ \subsection step3 Step 5: Choose an name for the container
+ \subsection step4 Step 4: Change the Source Code to https://github.com/robrotheram/wePredictAPI.git
+ \subsection step5 Step 5: Add Application
+ \subsection step6 Step 6: Add a MySQL Database to the container
+ \subsection step7 Step 7: Log into the application database using a application similar to Mysql Workbench.
+ To connect the the database using this tutorial
+ <a href="https://forums.openshift.com/connecting-to-openshift-mysql-using-workbench">
+ https://forums.openshift.com/connecting-to-openshift-mysql-using-workbench</a>
+
+ \subsection step8 Step 8: import the database form the dump data.
+ \subsection step9 Step 9: Application should now work
+
+
+
 """
 
+## Setup A Flask App
 app = Flask(__name__)
+## Enable Cross-origin resource sharing so that the API and front end can be on different servers
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
-
-
-
-class error(Resource):
-  "My TODO API"
-  @swagger.operation(
-      notes='Get list of all CCG in England',
-      nickname='get',
-    )
-  def get(self):
-    """
-    Return a Fibonacci number
-
-    @param    n   Number in the sequence to return
-    @retval       The nth Fibonacci number
-    """
-    data = g.db.getResult("SELECT Practice_Code,CCG_Name FROM TBL_PRACTICE_INFO group by CCG_Name;")
-    return data, 200, {'Access-Control-Allow-Origin': '*'}
-
-
-
-
-###################################
-# This is important:
+##API Setup using the swagger Lib for Auto documenting
 api = swagger.docs(Api(app), apiVersion='0.1',
                    basePath='http://wepredict.robrotheram.com',
                    resourcePath='/',
                    produces=["application/json", "text/html"],
                    api_spec_url='/api/spec',
                    description='WePredict API')
-###################################
-
-parser = reqparse.RequestParser()
-parser.add_argument('task', type=str)
-
-
-
-
 
 
 api.add_resource(CcgList, '/ccg')
@@ -94,10 +100,8 @@ api.add_resource(Practice_Obesity_QOF, '/practice/obesity/<string:practice_id>')
 @app.route('/docs')
 def docs():
     """
-    Return a Fibonacci number
-
-    @param    n   Number in the sequence to return
-    @retval       The nth Fibonacci number
+    URL route to the API Documentation
+    @retval       Url Path
     """
     return redirect('/static/docs/index.html')
 
@@ -106,16 +110,11 @@ def docs():
 
 @app.before_request
 def before_request():
+    """
+    Sets Up the Database connection pool into the Flask Global variables g that then can be used across the other modules
+
+    """
     g.db = DB()
-
-
-#import wePredictAPI.views.v1
-#import wePredictAPI.views.v1.Asmtha
-#import wePredictAPI.views.v1.COPD
-#import wePredictAPI.views.v1.flu
-#import wePredictAPI.views.v1.MedicalCenters
-#import wePredictAPI.views.v1.Pollution
-#import wePredictAPI.views.v1.smoking
 
 if __name__ == '__main__':
     app.run(debug=True)

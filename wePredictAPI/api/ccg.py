@@ -1,4 +1,9 @@
 __author__ = 'robert'
+
+## @package wePredictAPI.api.ccg
+#  API Classes that are specific to get CCG Data from the database
+
+
 from flask import Flask ,g
 from flask_cors import CORS
 from wePredictAPI.database.db import DB
@@ -9,7 +14,9 @@ import simplejson
 import urllib
 
 class CcgList(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get list of CCG form the database
+  """
   @swagger.operation(
       notes='Get list of all CCG in England',
       nickname='get',
@@ -23,13 +30,18 @@ class CcgList(Resource):
 
 
 class HeatMap(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get Heat map data form the database
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self):
-    """Get heat map infomation
+    """
+    Defines what a http get will output for this API route
+
+    :return JSON Opject that cotains all infomtion form the database:
     """
     data = g.db.getResult("SELECT CCG_Name, "
                           "AVG(2009_COPD_QOF_Value) as 2009_COPD, "
@@ -51,13 +63,18 @@ class HeatMap(Resource):
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class CCG_Asmatha_ALL(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get Asmatha data for all CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self):
-    """Get heat map infomation
+    """
+    Defines what a http get will output for this API route
+
+    :return data: JSON encoded Object that contains all information form the database
     """
     data = g.db.getResult("SELECT CCG_Name, "
                           "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
@@ -78,14 +95,20 @@ class CCG_Asmatha_ALL(Resource):
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class CCG_Asmatha(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get Asmatha data for certain  CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self,ccg_id):
-    """Get Data of a specific Practice in CCG
     """
+    Defines what a http get will output for this API route
+    :param ccg_id: String contain the specific CCG to search for data
+    :return data: JSON encoded Object that contains all information form the database
+    """
+
     ccg = urllib.unquote(ccg_id)
     data = g.db.getResultParamaters("SELECT CCG_Name, "
                           "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
@@ -108,13 +131,18 @@ class CCG_Asmatha(Resource):
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class CCG_COPD_QOF_ALL(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get COPD data for all CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self):
-    """Get heat map infomation
+    """
+        Defines what a http get will output for this API route
+
+        :return data: JSON encoded Object that contains all information form the database
     """
     data = g.db.getResult("SELECT CCG_Name, "
                           "AVG(2009_COPD_QOF_Value) as 2009_COPD_QOF,"
@@ -138,13 +166,18 @@ class CCG_COPD_QOF_ALL(Resource):
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class CCG_COPD_QOF(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get COPD data for Certain CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self,ccg_id):
-    """Get Data of a specific Practice in CCG
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
     """
     ccg = urllib.unquote(ccg_id)
     data = g.db.getResultParamaters("SELECT CCG_Name, "
@@ -172,13 +205,18 @@ class CCG_COPD_QOF(Resource):
 
 
 class CCG_Obesity_QOF_ALL(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get Obesity data for all CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self):
-    """Get heat map infomation
+    """
+        Defines what a http get will output for this API route
+
+        :return data: JSON encoded Object that contains all information form the database
     """
     data = g.db.getResult("SELECT CCG_Name, "
                           "AVG(2009_Obesity_QOF_Value) as 2009_Obesity_QOF,"
@@ -202,13 +240,18 @@ class CCG_Obesity_QOF_ALL(Resource):
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 class CCG_Obesity_QOF(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get Obesity data for certain CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self,ccg_id):
-    """Get Data of a specific Practice in CCG
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
     """
     ccg = urllib.unquote(ccg_id)
     data = g.db.getResultParamaters("SELECT CCG_Name, "
@@ -234,13 +277,17 @@ class CCG_Obesity_QOF(Resource):
                           "group by CCG_NAME;",(ccg_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 class CCG_CHD_QOF_ALL(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get CHD data for all CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self):
-    """Get heat map infomation
+    """
+        Defines what a http get will output for this API route
+        :return data: JSON encoded Object that contains all information form the database
     """
     data = g.db.getResult("SELECT CCG_Name, "
                           "AVG(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
@@ -263,13 +310,18 @@ class CCG_CHD_QOF_ALL(Resource):
                           "group by CCG_Name;")
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 class CCG_CHD_QOF(Resource):
-  "My TODO API"
+  """
+    API Class that define the methods to get CHD data for certain CCG
+  """
   @swagger.operation(
       notes='Get Heatmap data',
       nickname='get',
     )
   def get(self,ccg_id):
-    """Get Data of a specific Practice in CCG
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
     """
     ccg = urllib.unquote(ccg_id)
     data = g.db.getResultParamaters("SELECT CCG_Name, "
