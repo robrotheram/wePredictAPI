@@ -106,7 +106,7 @@ def docs():
     return redirect('/static/docs/index.html')
 
 @app.route('/')
-def docs():
+def homepage():
     """
     URL route to the frontend of the application
     @retval       Url Path
