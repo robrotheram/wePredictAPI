@@ -44,19 +44,30 @@ class HeatMap(Resource):
     :return JSON Opject that cotains all infomtion form the database:
     """
     data = g.db.getResult("SELECT CCG_Name, "
+
                           "AVG(2009_COPD_QOF_Value) as 2009_COPD, "
                           "AVG(2010_COPD_QOF_Value) as 2010_COPD,"
                           "AVG(2011_COPD_QOF_Value) as 2011_COPD,"
                           "AVG(2012_COPD_QOF_Value) as 2012_COPD,"
-                          "AVG(2013_COPD_QOF_Value) as 2013_COPD, "
+
+
                           "AVG(2009_Asthma_Value) as 2009_ASTHMA,"
                           "AVG(2010_Asthma_Value) as 2010_ASTHMA,"
                           "AVG(2011_Asthma_Value) as 2011_ASTHMA, "
                           "AVG(2012_Asthma_Value) as 2012_ASTHMA, "
-                          "AVG(2012_smoking_prevalence_Value) as 2012_SMOKING ,"
-                          "AVG(2013_smoking_prevalence_Value) as 2013_SMOKING,"
-                          "AVG(2010_flu_vaccine_65_Value) as 2010_FLU65, "
-                          "AVG(2010_flu_vaccine_06_Value) as 2010_FLU06  "
+
+                          "AVG(2009_Obesity_QOF_Value) as 2009_Obesity_QOF,"
+                          "AVG(2010_Obesity_QOF_Value) as 2010_Obesity_QOF,"
+                          "AVG(2011_Obesity_QOF_Value) as 2011_Obesity_QOF,"
+                          "AVG(2012_Obesity_QOF_Value) as 2012_Obesity_QOF,"
+
+                          "AVG(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
+                          "AVG(2010_CHD_QOF_Value) as 2010_CHD_QOF,"
+                          "AVG(2011_CHD_QOF_Value) as 2011_CHD_QOF,"
+                          "AVG(2012_CHD_QOF_Value) as 2012_CHD_QOF,"
+
+
+
                           "FROM TBL_PRACTICE_DATA "
                           "join TBL_PRACTICE_INFO on TBL_PRACTICE_DATA.Practice_Code = TBL_PRACTICE_INFO.Practice_Code "
                           "group by CCG_Name;")
