@@ -77,7 +77,7 @@ class Practice_Asmatha(Resource):
     API Class that define the methods to get all Asmatha for a certain practice
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Asmatha Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -109,7 +109,7 @@ class Practice_COPD_QOF(Resource):
     API Class that define the methods to get all COPD for a certain practice
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get COPD Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -145,7 +145,7 @@ class Practice_Obesity_QOF(Resource):
     API Class that define the methods to get all obesity for a certain practice
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get obesity Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -180,7 +180,7 @@ class Practice_CHD_QOF(Resource):
     API Class that define the methods to get all CHD for a certain practice
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get CHD Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -216,7 +216,7 @@ class Practice_COPD_Admissions(Resource):
     API Class that define the methods to get COPD_Admissions data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get COPD Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -245,7 +245,7 @@ class Practice_Smoking(Resource):
     API Class that define the methods to get smoking prevalence data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Smoking Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):
@@ -272,7 +272,7 @@ class Practice_Flu(Resource):
     API Class that define the methods to get Flu data for certain Practice
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Flu Data of a specific Practice in CCG',
       nickname='get',
     )
   def get(self,practice_id):

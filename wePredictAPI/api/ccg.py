@@ -75,7 +75,7 @@ class CCG_Asmatha_ALL(Resource):
     API Class that define the methods to get Asmatha data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Asmatha data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -107,7 +107,7 @@ class CCG_Asmatha(Resource):
     API Class that define the methods to get Asmatha data for certain  CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Asmatha data for certain  CCG',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -143,7 +143,7 @@ class CCG_COPD_QOF_ALL(Resource):
     API Class that define the methods to get COPD data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get COPD data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -178,7 +178,7 @@ class CCG_COPD_QOF(Resource):
     API Class that define the methods to get COPD data for Certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get COPD data for Certain CCG',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -217,7 +217,7 @@ class CCG_Obesity_QOF_ALL(Resource):
     API Class that define the methods to get Obesity data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Obesity data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -252,7 +252,7 @@ class CCG_Obesity_QOF(Resource):
     API Class that define the methods to get Obesity data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Obesity data for certain CC',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -291,7 +291,7 @@ class CCG_CHD_QOF_ALL(Resource):
     API Class that define the methods to get CHD data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get CHD data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -324,7 +324,7 @@ class CCG_CHD_QOF(Resource):
     API Class that define the methods to get CHD data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get CHD data for certain CCG',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -364,7 +364,7 @@ class CCG_COPD_Admissions_ALL(Resource):
     API Class that define the methods to get COPD_Admissions data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='COPD_Admissions data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -391,7 +391,7 @@ class CCG_COPD_Admissions(Resource):
     API Class that define the methods to get COPD_Admissions data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get COPD_Admissions data for certain CCG',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -423,7 +423,7 @@ class CCG_Smoking_ALL(Resource):
     API Class that define the methods to get smoking prevalence data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get smoking prevalence data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -447,7 +447,7 @@ class CCG_Smoking(Resource):
     API Class that define the methods to get smoking prevalence data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get smoking prevalence data for certain CCG',
       nickname='get',
     )
   def get(self,ccg_id):
@@ -476,7 +476,7 @@ class CCG_Flu_ALL(Resource):
     API Class that define the methods to get Flu prevalence data for all CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Flu prevalence data for all CCG',
       nickname='get',
     )
   def get(self):
@@ -500,7 +500,7 @@ class CCG_Flu(Resource):
     API Class that define the methods to get Flu data for certain CCG
   """
   @swagger.operation(
-      notes='Get Heatmap data',
+      notes='Get Flu data for certain CCG',
       nickname='get',
     )
   def get(self,ccg_id):
