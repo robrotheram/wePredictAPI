@@ -64,10 +64,7 @@ class HeatMap(Resource):
                           "AVG(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
                           "AVG(2010_CHD_QOF_Value) as 2010_CHD_QOF,"
                           "AVG(2011_CHD_QOF_Value) as 2011_CHD_QOF,"
-                          "AVG(2012_CHD_QOF_Value) as 2012_CHD_QOF"
-
-
-
+                          "AVG(2012_CHD_QOF_Value) as 2012_CHD_QOF "
                           "FROM TBL_PRACTICE_DATA "
                           "join TBL_PRACTICE_INFO on TBL_PRACTICE_DATA.Practice_Code = TBL_PRACTICE_INFO.Practice_Code "
                           "group by CCG_Name;")
