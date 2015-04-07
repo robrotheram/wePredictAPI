@@ -113,6 +113,12 @@ api.add_resource(Practice_COPD_QOF, '/practice/copd/<string:practice_id>')
 
 api.add_resource(Practice_Obesity_QOF, '/practice/obesity/<string:practice_id>')
 
+api.add_resource(Practice_COPD_Admissions, '/practice/COPDAdmissions/<string:practice_id>')
+
+api.add_resource(Practice_Smoking, '/practice/smoking/<string:practice_id>')
+
+api.add_resource(Practice_Flu, '/practice/flu/<string:practice_id>')
+
 
 
 @app.route('/docs')

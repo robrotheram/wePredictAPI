@@ -209,3 +209,87 @@ class Practice_CHD_QOF(Resource):
                           "FROM TBL_PRACTICE_DATA "
                           "where Practice_Code = %s;",(ccg))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
+
+
+class Practice_COPD_Admissions(Resource):
+  """
+    API Class that define the methods to get COPD_Admissions data for certain CCG
+  """
+  @swagger.operation(
+      notes='Get Heatmap data',
+      nickname='get',
+    )
+  def get(self,practice_id):
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
+    """
+    ccg = urllib.unquote(practice_id)
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
+                          "AVG(2010_COPD_Admissions_Value) as 2010_COPD_Admissions,"
+                          "AVG(2010_COPD_Admissions_Lower) as 2010_COPD_Admissions_Lower,"
+                          "AVG(2010_COPD_Admissions_Upper) as 2010_COPD_Admissions_Upper,"
+                          "AVG(2011_COPD_Admissions_Value) as 2011_COPD_Admissions,"
+                          "AVG(2011_COPD_Admissions_Lower) as 2011_COPD_Admissions_Lower,"
+                          "AVG(2011_COPD_Admissions_Upper) as 2011_COPD_Admissions_Upper,"
+                          "AVG(2012_COPD_Admissions_Value) as 2012_COPD_Admissions,"
+                          "AVG(2012_COPD_Admissions_Lower) as 2012_COPD_Admissions_Lower,"
+                          "AVG(2012_COPD_Admissions_Upper) as 2012_COPD_Admissions_Upper "
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(ccg))
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
+
+class Practice_Smoking(Resource):
+  """
+    API Class that define the methods to get smoking prevalence data for certain CCG
+  """
+  @swagger.operation(
+      notes='Get Heatmap data',
+      nickname='get',
+    )
+  def get(self,practice_id):
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
+    """
+    ccg = urllib.unquote(practice_id)
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
+						  "AVG(2012_smoking_prevalence_Value) as 2012_smoking_prevalence,"
+                          "AVG(2012_smoking_prevalence_Upper) as 2012_smoking_prevalence_Upper,"
+                          "AVG(2012_smoking_prevalence_Lower) as 2012_smoking_prevalence_Lower,"
+                          "AVG(2013_smoking_prevalence_Value) as 2013_smoking_prevalence,"
+                          "AVG(2013_smoking_prevalence_Upper) as 2013_smoking_prevalence_Upper,"
+                          "AVG(2013_smoking_prevalence_Lower) as 2013_smoking_prevalence_Lower "
+                          "FROM TBL_PRACTICE_DATA "
+                          "where Practice_Code = %s;",(ccg))
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
+
+
+class Practice_Flu(Resource):
+  """
+    API Class that define the methods to get Flu data for certain Practice
+  """
+  @swagger.operation(
+      notes='Get Heatmap data',
+      nickname='get',
+    )
+  def get(self,practice_id):
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
+    """
+    ccg = urllib.unquote(practice_id)
+    data = g.db.getResultParamaters("SELECT Practice_Code, "
+                                    "AVG(2010_flu_vaccine_65_Value) as 2010_flu65,"
+                                    "AVG(2010_flu_vaccine_66_Lower) as 2010_flu65_Upper,"
+                                    "AVG(2010_flu_vaccine_67_Upper) as 2010_flu65_Lower,"
+                                    "AVG(2010_flu_vaccine_06_Value) as 2010_flu06,"
+                                    "AVG(2010_flu_vaccine_07_Lower) as 2010_flu06_Lower,"
+                                    "AVG(2010_flu_vaccine_08_Upper) as 2010_flu06_Upper "
+                                    "FROM TBL_PRACTICE_DATA "
+                                    "where Practice_Code = %s;",(ccg))
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
+
