@@ -9,8 +9,8 @@ from wePredictAPI.database.db import DB
 from flask import Flask, redirect
 from flask.ext.restful import reqparse, Api, Resource
 from flask_restful_swagger import swagger
-from api.ccg import CcgList, HeatMap,CCG_Asmatha,CCG_Asmatha_ALL, CCG_CHD_QOF,CCG_CHD_QOF_ALL,CCG_COPD_QOF,CCG_COPD_QOF_ALL,CCG_Obesity_QOF,CCG_Obesity_QOF_ALL
-from api.practice import PracticeData, Practice, PracticeList, Practice_Asmatha,Practice_CHD_QOF,Practice_COPD_QOF,Practice_Obesity_QOF
+from api.ccg import *
+from api.practice import *
 
 
 """
@@ -82,6 +82,16 @@ api.add_resource(CCG_COPD_QOF, '/ccg/copd/<string:ccg_id>')
 
 api.add_resource(CCG_Obesity_QOF_ALL, '/ccg/obesity')
 api.add_resource(CCG_Obesity_QOF, '/ccg/obesity/<string:ccg_id>')
+
+api.add_resource(CCG_COPD_Admissions_ALL, '/ccg/COPDAdmissions')
+api.add_resource(CCG_COPD_Admissions, '/ccg/COPDAdmissions/<string:ccg_id>')
+
+api.add_resource(CCG_Smoking_ALL, '/ccg/smoking')
+api.add_resource(CCG_Smoking, '/ccg/smoking/<string:ccg_id>')
+
+api.add_resource(CCG_Flu_ALL, '/ccg/flu')
+api.add_resource(CCG_Flu, '/ccg/flu/<string:ccg_id>')
+
 
 
 
