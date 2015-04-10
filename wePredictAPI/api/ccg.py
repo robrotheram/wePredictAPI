@@ -510,7 +510,7 @@ class CCG_Flu(Resource):
         :return data: JSON encoded Object that contains all information form the database
     """
     ccg = urllib.unquote(ccg_id)
-    data = g.db.getResultParamaters("SELECT Practice_Code, "
+    data = g.db.getResultParamaters("SELECT Practice_Name, "
                                     "(2010_flu_vaccine_65_Value) as 2010_flu65,"
                                     "(2010_flu_vaccine_66_Lower) as 2010_flu65_Upper,"
                                     "(2010_flu_vaccine_67_Upper) as 2010_flu65_Lower,"
