@@ -70,6 +70,7 @@ parser.add_argument('task', type=str)
 
 
 api.add_resource(CcgList, '/ccg')
+api.add_resource(CCG_Data, '/ccg/<string:ccg_id>')
 
 api.add_resource(CCG_Asmatha_ALL, '/ccg/asmatha')
 api.add_resource(CCG_Asmatha, '/ccg/asmatha/<string:ccg_id>')

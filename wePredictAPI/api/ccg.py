@@ -168,6 +168,9 @@ class CCG_COPD_QOF_ALL(Resource):
                           "AVG(2013_COPD_QOF_Value) as 2013_COPD_QOF,"
                           "AVG(2013_COPD_QOF_Upper) as 2013_COPD_QOF_Upper,"
                           "AVG(2013_COPD_QOF_Lower) as 2013_COPD_QOF_Lower "
+
+
+
                           "FROM TBL_PRACTICE_INFO "
                           "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
                           "group by CCG_Name;")
@@ -522,3 +525,97 @@ class CCG_Flu(Resource):
                           "where CCG_NAME = %s ;",(ccg_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
+
+
+class CCG_Data(Resource):
+  """
+    API Class that define the methods to get All data for certain CCG
+  """
+  @swagger.operation(
+      notes='Get All data for certain CCG',
+      nickname='get',
+    )
+  def get(self,ccg_id):
+    """
+        Defines what a http get will output for this API route
+        :param ccg_id: String contain the specific CCG to search for data
+        :return data: JSON encoded Object that contains all information form the database
+    """
+    ccg = urllib.unquote(ccg_id)
+    data = g.db.getResultParamaters("SELECT Practice_Name, "
+                                    "(2010_flu_vaccine_65_Value) as 2010_flu65,"
+                                    "(2010_flu_vaccine_66_Lower) as 2010_flu65_Upper,"
+                                    "(2010_flu_vaccine_67_Upper) as 2010_flu65_Lower,"
+                                    "(2010_flu_vaccine_06_Value) as 2010_flu06,"
+                                    "(2010_flu_vaccine_07_Lower) as 2010_flu06_Lower,"
+                                    "(2010_flu_vaccine_08_Upper) as 2010_flu06_Upper, "
+
+                                    "(2012_smoking_prevalence_Value) as 2012_smoking_prevalence,"
+                                    "(2012_smoking_prevalence_Upper) as 2012_smoking_prevalence_Upper,"
+                                    "(2012_smoking_prevalence_Lower) as 2012_smoking_prevalence_Lower,"
+                                    "(2013_smoking_prevalence_Value) as 2013_smoking_prevalence,"
+                                    "(2013_smoking_prevalence_Upper) as 2013_smoking_prevalence_Upper,"
+                                    "(2013_smoking_prevalence_Lower) as 2013_smoking_prevalence_Lower, "
+
+                                    "(2010_COPD_Admissions_Value) as 2010_COPD_Admissions,"
+                                    "(2010_COPD_Admissions_Lower) as 2010_COPD_Admissions_Lower,"
+                                    "(2010_COPD_Admissions_Upper) as 2010_COPD_Admissions_Upper,"
+                                    "(2011_COPD_Admissions_Value) as 2011_COPD_Admissions,"
+                                    "(2011_COPD_Admissions_Lower) as 2011_COPD_Admissions_Lower,"
+                                    "(2011_COPD_Admissions_Upper) as 2011_COPD_Admissions_Upper,"
+                                    "(2012_COPD_Admissions_Value) as 2012_COPD_Admissions,"
+                                    "(2012_COPD_Admissions_Lower) as 2012_COPD_Admissions_Lower,"
+                                    "(2012_COPD_Admissions_Upper) as 2012_COPD_Admissions_Upper, "
+
+                                    "(2009_COPD_QOF_Value) as 2009_COPD_QOF,"
+                                    "(2009_COPD_QOF_Upper) as 2009_COPD_QOF_Upper,"
+                                    "(2009_COPD_QOF_Lower) as 2009_COPD_QOF_Lower,"
+                                    "(2010_COPD_QOF_Value) as 2010_COPD_QOF,"
+                                    "(2010_COPD_QOF_Upper) as 2010_COPD_QOF_Upper,"
+                                    "(2010_COPD_QOF_Lower) as 2010_COPD_QOF_Lower,"
+                                    "(2011_COPD_QOF_Value) as 2011_COPD_QOF,"
+                                    "(2011_COPD_QOF_Upper) as 2011_COPD_QOF_Upper,"
+                                    "(2011_COPD_QOF_Lower) as 2011_COPD_QOF_Lower,"
+                                    "(2012_COPD_QOF_Value) as 2012_COPD_QOF,"
+                                    "(2012_COPD_QOF_Upper) as 2012_COPD_QOF_Upper,"
+                                    "(2012_COPD_QOF_Lower) as 2012_COPD_QOF_Lower, "
+                                    "(2013_COPD_QOF_Value) as 2013_COPD_QOF,"
+                                    "(2013_COPD_QOF_Upper) as 2013_COPD_QOF_Upper,"
+                                    "(2013_COPD_QOF_Lower) as 2013_COPD_QOF_Lower, "
+
+                                    "(2009_Obesity_QOF_Value) as 2009_Obesity_QOF,"
+                                    "(2009_Obesity_QOF_Upper) as 2009_Obesity_QOF_Upper,"
+                                    "(2009_Obesity_QOF_Lower) as 2009_Obesity_QOF_Lower,"
+                                    "(2010_Obesity_QOF_Value) as 2010_Obesity_QOF,"
+                                    "(2010_Obesity_QOF_Upper) as 2010_Obesity_QOF_Upper,"
+                                    "(2010_Obesity_QOF_Lower) as 2010_Obesity_QOF_Lower,"
+                                    "(2011_Obesity_QOF_Value) as 2011_Obesity_QOF,"
+                                    "(2011_Obesity_QOF_Upper) as 2011_Obesity_QOF_Upper,"
+                                    "(2011_Obesity_QOF_Lower) as 2011_Obesity_QOF_Lower,"
+                                    "(2012_Obesity_QOF_Value) as 2012_Obesity_QOF,"
+                                    "(2012_Obesity_QOF_Upper) as 2012_Obesity_QOF_Upper,"
+                                    "(2012_Obesity_QOF_Lower) as 2012_Obesity_QOF_Lower, "
+                                    "(2013_Obesity_QOF_Value) as 2013_Obesity_QOF,"
+                                    "(2013_Obesity_QOF_Upper) as 2013_Obesity_QOF_Upper,"
+                                    "(2013_Obesity_QOF_Lower) as 2013_Obesity_QOF_Lower, "
+
+                                    "(2009_CHD_QOF_Value) as 2009_CHD_QOF,"
+                                    "(2009_CHD_QOF_Upper) as 2009_CHD_QOF_Upper,"
+                                    "(2009_CHD_QOF_Lower) as 2009_CHD_QOF_Lower,"
+                                    "(2010_CHD_QOF_Value) as 2010_CHD_QOF,"
+                                    "(2010_CHD_QOF_Upper) as 2010_CHD_QOF_Upper,"
+                                    "(2010_CHD_QOF_Lower) as 2010_CHD_QOF_Lower,"
+                                    "(2011_CHD_QOF_Value) as 2011_CHD_QOF,"
+                                    "(2011_CHD_QOF_Upper) as 2011_CHD_QOF_Upper,"
+                                    "(2011_CHD_QOF_Lower) as 2011_CHD_QOF_Lower,"
+                                    "(2012_CHD_QOF_Value) as 2012_CHD_QOF,"
+                                    "(2012_CHD_QOF_Upper) as 2012_CHD_QOF_Upper,"
+                                    "(2012_CHD_QOF_Lower) as 2012_CHD_QOF_Lower, "
+                                    "(2013_CHD_QOF_Value) as 2013_CHD_QOF,"
+                                    "(2013_CHD_QOF_Upper) as 2013_CHD_QOF_Upper,"
+                                    "(2013_CHD_QOF_Lower) as 2013_CHD_QOF_Lower "
+
+                                    "FROM TBL_PRACTICE_INFO "
+                                    "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
+                                    "where CCG_NAME = %s ;",(ccg_id))
+    return data, 200, {'Access-Control-Allow-Origin': '*'}
