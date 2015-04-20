@@ -514,15 +514,16 @@ class CCG_Flu(Resource):
     """
     ccg = urllib.unquote(ccg_id)
     data = g.db.getResultParamaters("SELECT Practice_Name, "
-                                    "(2010_flu_vaccine_65_Value) as 2010_flu65,"
-                                    "(2010_flu_vaccine_66_Lower) as 2010_flu65_Upper,"
-                                    "(2010_flu_vaccine_67_Upper) as 2010_flu65_Lower,"
-                                    "(2010_flu_vaccine_06_Value) as 2010_flu06,"
-                                    "(2010_flu_vaccine_07_Lower) as 2010_flu06_Lower,"
-                                    "(2010_flu_vaccine_08_Upper) as 2010_flu06_Upper "
-                          "FROM TBL_PRACTICE_INFO "
-                          "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
-                          "where CCG_NAME = %s ;",(ccg_id))
+                                    "AVG(2010_flu_vaccine_65_Value) as 2010_flu65,"
+                                    "AVG(2010_flu_vaccine_66_Lower) as 2010_flu65_Upper,"
+                                    "AVG(2010_flu_vaccine_67_Upper) as 2010_flu65_Lower,"
+                                    "AVG(2010_flu_vaccine_06_Value) as 2010_flu06,"
+                                    "AVG(2010_flu_vaccine_07_Lower) as 2010_flu06_Lower,"
+                                    "AVG(2010_flu_vaccine_08_Upper) as 2010_flu06_Upper "
+                                    "FROM TBL_PRACTICE_INFO "
+                                    "join TBL_PRACTICE_DATA on TBL_PRACTICE_INFO.Practice_Code = TBL_PRACTICE_DATA.Practice_Code "
+                                    "where CCG_NAME = %s "
+                                    "group by CCG_Name;",(ccg_id))
     return data, 200, {'Access-Control-Allow-Origin': '*'}
 
 
