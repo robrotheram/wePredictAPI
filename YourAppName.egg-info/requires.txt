@@ -1,0 +1,9 @@
+Flask>=0.7.2
+flask-cors
+PyMySQL
+PySQLPool
+MarkupSafe
+MySQL-python
+simplejson
+flask-restful-swagger
+DBUtils>=1.1
